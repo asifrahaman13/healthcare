@@ -1,0 +1,108 @@
+import { Schema, model } from "mongoose";
+
+// Define a separate schema for key-value pairs
+const MeetWithDoctorSchema = new Schema({
+    doctor: {
+        type: String,
+    },
+    meet_link: {
+        type: String,
+    },
+});
+
+// Define a separate schema for key-value pairs
+const MeetWithUserSchema = new Schema({
+    user: {
+        type: String,
+    },
+    meet_link: {
+        type: String,
+    },
+});
+
+// Create Mongoose schema for users
+const userSchema = new Schema({
+    fullName: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+    },
+    address: {
+        type: String,
+        required: true,
+    },
+    profession: {
+        type: String,
+        required: true,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+    otp: {
+        type: String,
+        required: true,
+    },
+    isVerified: {
+        type: Boolean,
+        required: true,
+    },
+    appointments: {
+        type: [MeetWithDoctorSchema],
+        default: [],
+    }
+});
+
+// Create Mongoose schema for users
+const DoctorSchema = new Schema({
+    fullName: {
+        type: String,
+        required: true,
+    },
+    education: {
+        type: String,
+    },
+    address:{
+        type: String,
+        required: true,
+    },
+    experience: {
+        type: Number
+    },
+    email: {
+        type: String,
+        required: true,
+    },
+    department: {
+        type: String,
+        required: true,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+    otp: {
+        type: String,
+        required: true,
+    },
+    isVerified: {
+        type: Boolean,
+        required: true,
+    },
+    appointments: {
+        type: [MeetWithUserSchema],
+        default: [],
+    }
+});
+
+const User = model("users", userSchema);
+const Doctor = model("doctors", DoctorSchema)
+const MeetWithDoctor = model('MeetWithDoctor', MeetWithDoctorSchema);
+const MeetWithuser = model('MeetWithUser', MeetWithUserSchema);
+
+
+
+export { User, Doctor, MeetWithDoctor,MeetWithuser };
