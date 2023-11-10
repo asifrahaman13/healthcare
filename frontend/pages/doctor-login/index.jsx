@@ -16,7 +16,6 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            console.log(email, password)
             const response = await axios.post(`${BACKEND_DOMAIN}/doctors/login`, { email, password });
             if (response.data.success) {
                 setMessage(response.data.message);

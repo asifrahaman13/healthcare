@@ -13,7 +13,6 @@ const Header = () => {
     async function getStat() {
       try {
         const statistics = await axios.get(`${backend_domain}/utility/stats`);
-        console.log(statistics.data);
         setStatistics(statistics.data);
       } catch (err) {}
     }

@@ -43,8 +43,6 @@ const DoctorProfile = ({ access_token }) => {
           }
         );
         setDoctorDetails(doctor.data.userDetails);
-        console.log(doctor);
-        console.log(doctorDetails.data);
       } catch (err) {
         console.log(err);
       }

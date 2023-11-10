@@ -265,7 +265,7 @@ const index = () => {
               id="email"
               name="email"
               placeholder="Enter your concerns. Please explain in deails about the health issue you are facing."
-              className="w-full h-10 bg-gray-700 bg-opacity-50 rounded border text-base outline-none text-gray-900 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out mt-10"
+              className="w-full h-10 bg-gray-700 bg-opacity-50 rounded border border-gray-100 text-base outline-none text-gray-900 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out mt-10"
               value={inputText}
               onChange={handleInputChange}
             ></textarea>

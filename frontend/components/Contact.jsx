@@ -20,7 +20,6 @@ const ContactUsPage = () => {
   }
   async function SendConcern(e) {
     e.preventDefault();
-    console.log(contactDetails);
     setIsLoading(true);
     try {
       const contact = await axios.post(`${BACKEND_DOMAIN}/utility/contact-us`, {
@@ -29,7 +28,6 @@ const ContactUsPage = () => {
         message: contactDetails.message,
       });
 
-      console.log(contact);
       if (contact) {
         setIsLoading(false);
       }

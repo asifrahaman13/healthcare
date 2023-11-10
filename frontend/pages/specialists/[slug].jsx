@@ -25,7 +25,6 @@ const Page = () => {
         const doctors = await axios.get(
           `${BACKEND_DOMAIN}/utility/get-${slug}`
         );
-        console.log(doctors.data)
         setDoctors(doctors.data)
       } catch (err) {
         console.log(err);

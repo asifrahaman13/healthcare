@@ -28,11 +28,10 @@ const page = () => {
                       CATEGORY
                     </h2>
                     <h1 class="title-font text-lg font-medium text-gray-900 mb-3">
-                      The Catalyzer
+                      I AM A DOCTOR
                     </h1>
                     <p class="leading-relaxed mb-3">
-                      Photo booth fam kinfolk cold-pressed sriracha leggings
-                      jianbing microdosing tousled waistcoat.
+                    If you are a doctor and want to contribute in our website then please click on this card.
                     </p>
                     <div class="flex items-center flex-wrap ">
                       <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
@@ -82,11 +81,10 @@ const page = () => {
                       CATEGORY
                     </h2>
                     <h1 class="title-font text-lg font-medium text-gray-900 mb-3">
-                      The 400 Blows
+                    I AM A USER 
                     </h1>
                     <p class="leading-relaxed mb-3">
-                      Photo booth fam kinfolk cold-pressed sriracha leggings
-                      jianbing microdosing tousled waistcoat.
+                    If you are a user looking for consultations form specialist doctor then please click on this card.
                     </p>
                     <div class="flex items-center flex-wrap">
                       <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">

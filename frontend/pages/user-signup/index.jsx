@@ -2,50 +2,41 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 
+const BACKEND_DOMAIN = process.env.NEXT_PUBLIC_BACKEND_DOMAIN;
 
 export default function Signup() {
-    const router = useRouter();
+  const router = useRouter();
   const [userDetails, setUserDetails] = useState({
     fullName: "",
     email: "",
-    address:"",
+    address: "",
     profession: "",
-    password: ""
-  })
+    password: "",
+  });
 
-  function handleChange(e){
-    setUserDetails((userDetails)=>({
-        ...userDetails,
-        [e.target.name]:e.target.value
-    }))
-    console.log(userDetails)
+  function handleChange(e) {
+    setUserDetails((userDetails) => ({
+      ...userDetails,
+      [e.target.name]: e.target.value,
+    }));
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(userDetails)
-
-    // if (passwordConfirmation !== password) {
-    //   console.error("Passwords do not match");
-    //   return;
-    // }
 
     // Send a POST request to your Express.js API to handle signup
     try {
-      const response = await axios.post("http://localhost:8000/users/signup", {
+      const response = await axios.post(`${BACKEND_DOMAIN}/users/signup`, {
         fullName: userDetails.fullName,
         email: userDetails.email,
         address: userDetails.address,
         profession: userDetails.profession,
-        password: userDetails.password
+        password: userDetails.password,
       });
-
-      console.log(response.status);
 
       if (response.status === 203) {
         console.error("A user with the email address already exists");
       }
-      console.log(router)
 
       if (response.status === 200) {
         localStorage.setItem("email", userDetails.email);
@@ -66,15 +57,14 @@ export default function Signup() {
           <div className="p-8 rounded shadow-lg w-full sm:w-96">
             <h1 className="text-2xl text-black font-bold mb-6">Signup</h1>
             <form onSubmit={handleSubmit}>
-
-            <input
+              <input
                 type="text"
                 placeholder="Full Name"
                 name="fullName"
                 className="w-full mb-4 p-2 border border-gray-300 rounded"
                 onChange={(e) => handleChange(e)}
               />
-             
+
               <input
                 type="text"
                 placeholder="Email Address"
@@ -89,14 +79,14 @@ export default function Signup() {
                 className="w-full mb-6 p-2 border border-gray-300 rounded"
                 onChange={(e) => handleChange(e)}
               />
-               <input
+              <input
                 type="text"
                 name="profession"
                 placeholder="Profession"
                 className="w-full mb-6 p-2 border border-gray-300 rounded"
                 onChange={(e) => handleChange(e)}
               />
-                <input
+              <input
                 type="password"
                 name="password"
                 placeholder="Password"

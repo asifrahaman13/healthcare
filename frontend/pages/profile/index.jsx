@@ -9,7 +9,6 @@ const index = () => {
   useEffect(() => {
     const user_access_token = localStorage.getItem("user_access_token");
     const doctor_access_token = localStorage.getItem("doctor_access_token");
-    console.log(doctor_access_token);
     if (user_access_token) {
       setPerson("user");
       setAccessToken(user_access_token);
