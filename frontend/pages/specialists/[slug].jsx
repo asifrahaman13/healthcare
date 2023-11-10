@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import Router, { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
 
 const BACKEND_DOMAIN = process.env.NEXT_PUBLIC_BACKEND_DOMAIN;
 
-const Doctors = () => {
+const Page = () => {
+  const router = useRouter();
   const [doctors, setDoctors] = useState([
     {
       _id: "",
@@ -13,30 +15,27 @@ const Doctors = () => {
       department: "",
       address: "",
     },
-  ]);
-
-  const fetchDoctors = async () => {
-    try {
-      const response = await axios.get(
-        `${BACKEND_DOMAIN}/users/get-all-doctors`,
-        {}
-      );
-
-      setDoctors(response.data);
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      throw error;
-    }
-  };
+  ]);const { slug } = router.query;
 
   useEffect(() => {
-    fetchDoctors();
-  }, []);
-
-  return (
-    <>
-      <section className="text-gray-600 body-font">
+    
+  
+    async function getSpecialistDoctors() {
+      try {
+        const doctors = await axios.get(
+          `${BACKEND_DOMAIN}/utility/get-${slug}`
+        );
+        console.log(doctors.data)
+        setDoctors(doctors.data)
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getSpecialistDoctors()
+  });
+  
+  return (<>
+    <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div class="flex flex-col text-center w-full mb-20">
             <h2 class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">
@@ -46,10 +45,7 @@ const Doctors = () => {
               SEE OUR REGISTERED DOCTORS
             </h1>
             <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
-              Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
-              gentrify, subway tile poke farm-to-table. Franzen you probably
-              haven't heard of them man bun deep jianbing selfies heirloom prism
-              food truck ugh squid celiac humblebrag.
+              All below doctors are {slug}
             </p>
           </div>
           <div className="flex flex-wrap -m-4 ">
@@ -86,8 +82,7 @@ const Doctors = () => {
           </div>
         </div>
       </section>
-    </>
-  );
+  </>)
 };
 
-export default Doctors;
+export default Page;

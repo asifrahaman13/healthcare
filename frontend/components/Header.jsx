@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+const backend_domain = process.env.NEXT_PUBLIC_BACKEND_DOMAIN;
 
 const Header = () => {
+  const [statistics, setStatistics] = useState({
+    total_doctors: 0,
+    total_users: 0,
+  });
+  useEffect(() => {
+    async function getStat() {
+      try {
+        const statistics = await axios.get(`${backend_domain}/utility/stats`);
+        console.log(statistics.data);
+        setStatistics(statistics.data);
+      } catch (err) {}
+    }
+    getStat();
+  }, []);
+
   return (
     <>
       <section class="text-gray-600 body-font">
@@ -17,15 +35,17 @@ const Header = () => {
               globe. Get doctors advice from any where and keep your health in
               healthy conditions. We strongly respect your privacy and data.
             </p>
+
             <div class="flex justify-center">
               <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-                Subscribe 
+                Subscribe
               </button>
               <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
                 Learn More
               </button>
             </div>
           </div>
+
           <div class="lg:max-w-lg lg:w-full md:w-1/2 ">
             <img
               class="object-cover object-center rounded h-full w-full opacity-75 "
@@ -34,6 +54,31 @@ const Header = () => {
             />
           </div>
         </div>
+        <section class="text-gray-600 body-font">
+          <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-wrap -m-4 text-center">
+              <div class="p-4 sm:w-1/3 w-1/2">
+                <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900">
+                  {statistics.total_users}
+                </h2>
+                <p class="leading-relaxed">Users</p>
+              </div>
+       
+              <div class="p-4 sm:w-1/3 w-1/2">
+                <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900">
+                  {statistics.total_doctors}
+                </h2>
+                <p class="leading-relaxed">Total Doctors</p>
+              </div>
+              <div class="p-4 sm:w-1/3 w-1/2">
+                <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900">
+                  {statistics.total_appointments}
+                </h2>
+                <p class="leading-relaxed">Total Appointments</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </section>
     </>
   );

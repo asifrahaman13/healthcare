@@ -226,7 +226,7 @@ doctor_signup_router.get("/doctor-details", async(req, res) => {
         res.json({
             success: true,
             userDetails: {
-                email, fullName, education, experience, role, department, appointments:doctor.appointments
+                email, fullName, address:doctor.address, education, experience, role, department, appointments:doctor.appointments
             },
         });
     });

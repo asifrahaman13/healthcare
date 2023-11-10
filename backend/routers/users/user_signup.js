@@ -189,39 +189,45 @@ user_signup_router.post("/login", async (req, res) => {
 
 user_signup_router.get("/user-details", (req, res) => {
     const accessToken = req.headers.authorization; // Assuming you send the access token in the "Authorization" header
-
-
-    // If there is no bearer token or if it is not bearer token then return error message.
-    if (!accessToken || !accessToken.startsWith("Bearer ")) {
-        return res.status(401).json({
-            success: false,
-            message: "Access token is missing or not in the correct format.",
-        });
-    }
-    const token = accessToken.split("Bearer ")[1];
-
-
-    // Verify the access token
-    jwt.verify(token, SECRET_KEY, async (err, decoded) => {
-        if (err) {
+    try {
+        // If there is no bearer token or if it is not bearer token then return error message.
+        if (!accessToken || !accessToken.startsWith("Bearer ")) {
             return res.status(401).json({
                 success: false,
-                message: "Invalid access token.",
+                message: "Access token is missing or not in the correct format.",
             });
         }
+        const token = accessToken.split("Bearer ")[1];
 
-        // If the token is valid, you can access user details from the decoded payload
-        const { email, fullName, address, profession } = decoded;
-        const user = await User.findOne({ email })
 
-        // You can now return the user details in the response
-        res.json({
-            success: true,
-            userDetails: {
-                email, fullName, address, profession, appointments:user.appointments
-            },
+        // Verify the access token
+        jwt.verify(token, SECRET_KEY, async (err, decoded) => {
+            if (err) {
+                return res.status(401).json({
+                    success: false,
+                    message: "Invalid access token.",
+                });
+            }
+
+            // If the token is valid, you can access user details from the decoded payload
+            const { email, fullName, address, profession } = decoded;
+            const user = await User.findOne({ email })
+
+            // You can now return the user details in the response
+            res.json({
+                success: true,
+                userDetails: {
+                    email, fullName, address, profession, appointments: user.appointments
+                },
+            });
         });
-    });
+    }
+    catch (err) {
+        console.log(err);
+    }
+
+
+
 });
 
 export { user_signup_router }

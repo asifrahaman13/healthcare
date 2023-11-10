@@ -15,34 +15,27 @@ const user_appointment_router = express.Router();
 
 // Create a new appointment for a user
 user_appointment_router.post('/appointment', checkUserRegistration, async (req, res) => {
-    const accessToken = req.headers.authorization;  // Assuming the email is sent in the request body
-    const token = accessToken.split("Bearer ")[1];
-    
-    let decoded; // Define 'decoded' in the outer scope
-
-    // Verify the access token
-    jwt.verify(token, SECRET_KEY, (err, tokenData) => {
-        if (err) {
-            return res.status(401).json({
-                success: false,
-                message: "Invalid access token.",
-            });
-        }
-
-        // If the token is valid, set 'decoded' to tokenData
-        decoded = tokenData;
-    });
-
     try {
-    
+        const accessToken = req.headers.authorization;  // Assuming the email is sent in the request body
+        const token = accessToken.split("Bearer ")[1];
+        let decoded; // Define 'decoded' in the outer scope
 
+        // Verify the access token
+        jwt.verify(token, SECRET_KEY, (err, tokenData) => {
+            if (err) {
+                return res.status(401).json({
+                    success: false,
+                    message: "Invalid access token.",
+                });
+            }
+
+            // If the token is valid, set 'decoded' to tokenData
+            decoded = tokenData;
+        });
         const { email } = decoded;
         const { appointments } = req.body;
-        const { doctor_email, meet_link } = appointments;
-
-    
+        const { doctor_email, meet_link, time } = appointments;
         console.log(req.body)
-
         // Find the user by email
         const user = await User.findOne({ email });
 
@@ -57,6 +50,7 @@ user_appointment_router.post('/appointment', checkUserRegistration, async (req, 
         const newAppointment = new MeetWithDoctor({
             doctor: doctor_email,
             meet_link,
+            time
         });
 
         // Push the new appointment to the 'appointments' array within the 'user.appointments' object
@@ -76,6 +70,7 @@ user_appointment_router.post('/appointment', checkUserRegistration, async (req, 
             const newAppointmentWithUser = new MeetWithuser({
                 user: email,
                 meet_link,
+                time
             });
 
             // Push the new appointment to the 'appointments' array within the 'user.appointments' object
@@ -127,22 +122,24 @@ user_appointment_router.get("/get-all-doctors", async (req, res) => {
 user_appointment_router.get("/get-doctor-details/:_id", async (req, res) => {
     console.log(req.params.id);
 
-    const _id=req.params._id;
+    const _id = req.params._id;
 
-    try{
+    try {
 
-        const doctor=await Doctor.findById({_id});
+        const doctor = await Doctor.findById({ _id });
 
         console.log(doctor)
-        res.send({_id: doctor._id,
+        res.send({
+            _id: doctor._id,
             fullName: doctor.fullName,
             education: doctor.education,
             address: doctor.address,
             email: doctor.email,
-            experience: doctor.experience});
+            experience: doctor.experience
+        });
 
     }
-    catch(err){
+    catch (err) {
         res.status(500).json({ success: false, message: "Internal Server Error" });
     }
 })

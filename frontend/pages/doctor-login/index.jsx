@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useRouter } from 'next/router';
 import 'tailwindcss/tailwind.css';
+const BACKEND_DOMAIN = process.env.NEXT_PUBLIC_BACKEND_DOMAIN;
 // import { console, consoleContainer } from 'react-consoleify';
 // import 'react-consoleify/dist/Reactconsoleify.css';
 // import "./signup.css"
@@ -16,13 +17,13 @@ export default function Login() {
         e.preventDefault();
         try {
             console.log(email, password)
-            const response = await axios.post("http://localhost:8000/doctors/login", { email, password });
+            const response = await axios.post(`${BACKEND_DOMAIN}/doctors/login`, { email, password });
             if (response.data.success) {
                 setMessage(response.data.message);
-                localStorage.setItem('access_token', response.data.accessToken);
-                // window.location.reload();
+                localStorage.setItem('doctor_access_token', response.data.accessToken);
+                
                 router.push('/');
-                // window.location.reload();
+         
             } else {
                 console.error("Sorry wrong credentials")
                 setMessage(response.data.message);

@@ -31,7 +31,7 @@ def chroma_embedding(question):
         ),
     )
     # query = "The document contains the repository along with the codes. Now you need to decide which Repository contains the most complex code. Tell the name of the repository. Also explain in 100 words why you think the repository is the most complex"
-    query = f"""You are a mental health counsellor. You will be given certain conditions. Your tasks will be to search over the document provided to you and provide a good solution to the mental health problem that I am facing. Use the pdf provided to give the reponse mention the names of the therapy you are suggesgting from the pdf. Give your response in a very friendly manner as if you are my best friend.
+    query = f"""You are a mental medical assistant. You will be given certain conditions. Your tasks will be to search over the document provided to you and provide a good solution to the mental health problem that I am facing. Use the pdf provided to give the reponse mention the names of the therapy you are suggesgting from the pdf. Give your response in a very friendly manner as if you are my best friend.
 
     I am facing the following problem: 
 
@@ -39,8 +39,8 @@ def chroma_embedding(question):
     
     Give your answer in following formats:
 
-    1. What is the possible name of the mental discorder I am facing.  
-    2. The explanation of the cause and effect of the mental discorder i am facing.
+    1. What is the possible name of the discorder or issue I am facing.  
+    2. The explanation of the cause and effect of the discorder i am facing.
     3. The possible solutions and therapy. Describe the therapy in pointwise form too. For example like the following: 
        (a). therapy a
        (b). therapy b 

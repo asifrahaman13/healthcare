@@ -265,8 +265,8 @@ const Room = () => {
     // </div>
     <>
       <div class="flex flex-col items-center justify-center h-screen bg-gray-900 text-white">
-        <div class="flex space-x-4 mb-8 w-90">
-          <div class="relative w-full aspect-w-16 aspect-h-9">
+        <div class="flex space-x-4 mb-8 w-5/6">
+          <div class="relative w-full aspect-h-11">
             <video autoPlay ref={userVideoRef} class="rounded-lg shadow-md object-cover w-full h-full" />
             <div class="absolute top-2 right-2">
               <span class="bg-green-500 text-white py-1 px-2 rounded-full">You</span>

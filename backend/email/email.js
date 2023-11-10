@@ -1,6 +1,5 @@
 import { createTransport } from "nodemailer";
-
-async function SendEmail(email, otp, subject="Verify Your Email Address", text="Your OTP for email verification is") {
+async function SendEmail(email, otp, subject = "Verify Your Email Address", text = "Your OTP for email verification is") {
   const transporter = createTransport({
     service: "Gmail",
     auth: {
@@ -11,9 +10,23 @@ async function SendEmail(email, otp, subject="Verify Your Email Address", text="
 
   const mailOptions = {
     from: process.env.USER_EMAIL,
-    to: email, // Use the "email" parameter
+    to: email,
     subject: subject,
-    text: `${text} ${otp}`,
+    html: `
+      <html>
+        <body style="font-family: Arial, sans-serif; text-align: center; padding: 20px; background-color: #f4f4f4;">
+          <h2>${subject}</h2>
+          <p>${text} <strong>${otp}</strong></p>
+          <p>
+            Thank you for using our service. If you have any questions, please contact us.
+          </p>
+          <p>
+            Best regards,<br>
+            Your Company Name
+          </p>
+        </body>
+      </html>
+    `,
   };
 
   try {
@@ -24,5 +37,4 @@ async function SendEmail(email, otp, subject="Verify Your Email Address", text="
     return false;
   }
 }
-
 export default SendEmail;

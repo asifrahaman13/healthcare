@@ -6,6 +6,7 @@ import { config } from "dotenv";
 import { doctor_signup_router } from "./routers/doctors/doctors_signup.js";
 import { user_signup_router } from "./routers/users/user_signup.js";
 import { user_appointment_router } from "./routers/users/user_interaction.js";
+import {utility_router} from "./routers/utility/utility.js";
 
 // Call the connectToMongo function to establish the connection
 (async () => {
@@ -29,6 +30,7 @@ app.use(cors());
 app.use("/doctors/", doctor_signup_router)
 app.use("/users/", user_signup_router)
 app.use("/users/", user_appointment_router)
+app.use("/utility/", utility_router)
 
 
 app.listen(port, () => {

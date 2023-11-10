@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavLink from "next/link";
 import { useRouter } from "next/router";
 
 const Navbar = () => {
+  const [isUser, setIsUser] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    const user_access_token = localStorage.getItem("user_access_token");
+    const doctor_access_token = localStorage.getItem("doctor_access_token");
+    console.log(user_access_token, doctor_access_token);
+    if (user_access_token || doctor_access_token) {
+      setIsUser(true);
+    }
+  }, []);
 
   function deleteLocalStorage() {
     localStorage.removeItem("user_access_token");
@@ -28,41 +38,60 @@ const Navbar = () => {
             >
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
-            <span class="ml-3 text-xl">Tailblocks</span>
+            <NavLink href="/">
+              <span class="ml-3 text-xl">Doco</span>
+            </NavLink>
           </a>
           <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-            <NavLink class="mr-5 hover:text-gray-900" href="/">
-              Home
-            </NavLink>
-            <NavLink class="mr-5 hover:text-gray-900" href="/chatbot">
-              Chatbot
-            </NavLink>
-            <NavLink class="mr-5 hover:text-gray-900" href="/about">
-              About
-            </NavLink>
-            <NavLink class="mr-5 hover:text-gray-900" href="/doctors">
-              Doctors
-            </NavLink>
-            <NavLink class="mr-5 hover:text-gray-900" href="/signin">
-              Signin
-            </NavLink>
-            <NavLink class="mr-5 hover:text-gray-900" href="/login">
-              Login
-            </NavLink>
-            <NavLink class="mr-5 hover:text-gray-900" href="/profile">
-              Profile
-            </NavLink>
-            <NavLink
-              href="/"
-              className="mr-5 hover:text-gray-900"
-              onClick={() => {
-                deleteLocalStorage();
-
-                setIsLoggedIn(false);
-              }}
-            >
-              Logout
-            </NavLink>
+            {isUser === true ? (
+              <>
+                <NavLink class="mr-5 hover:text-gray-900" href="/">
+                  Home
+                </NavLink>
+                <NavLink class="mr-5 hover:text-gray-900" href="/chatbot">
+                  Chatbot
+                </NavLink>
+                <NavLink class="mr-5 hover:text-gray-900" href="/about">
+                  About
+                </NavLink>
+                <NavLink class="mr-5 hover:text-gray-900" href="/doctors">
+                  Doctors
+                </NavLink>
+                <NavLink class="mr-5 hover:text-gray-900" href="/profile">
+                  Profile
+                </NavLink>
+                <NavLink
+                  href="/"
+                  className="mr-5 hover:text-gray-900"
+                  onClick={() => {
+                    deleteLocalStorage();
+                  }}
+                >
+                  Logout
+                </NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink class="mr-5 hover:text-gray-900" href="/">
+                  Home
+                </NavLink>
+                <NavLink class="mr-5 hover:text-gray-900" href="/chatbot">
+                  Chatbot
+                </NavLink>
+                <NavLink class="mr-5 hover:text-gray-900" href="/about">
+                  About
+                </NavLink>
+                <NavLink class="mr-5 hover:text-gray-900" href="/doctors">
+                  Doctors
+                </NavLink>
+                <NavLink class="mr-5 hover:text-gray-900" href="/signin">
+                  Signin
+                </NavLink>
+                <NavLink class="mr-5 hover:text-gray-900" href="/login">
+                  Login
+                </NavLink>
+              </>
+            )}
           </nav>
           <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
             Button

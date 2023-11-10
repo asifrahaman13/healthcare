@@ -92,7 +92,7 @@ export default function Signup() {
                <input
                 type="text"
                 name="profession"
-                placeholder="Department"
+                placeholder="Profession"
                 className="w-full mb-6 p-2 border border-gray-300 rounded"
                 onChange={(e) => handleChange(e)}
               />

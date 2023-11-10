@@ -164,9 +164,9 @@ const index = () => {
   return (
     <>
     {isLoading && <Loader />}
-      <section className="text-gray-600 body-font">
-        <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-col text-center w-full mb-20">
+      <section className="text-gray-600 body-font bg-gradient-to-r from-blue-200 to-indigo-400 bg-opacity-50">
+        <div className="container px-5 py-24 mx-auto ">
+          <div className="flex flex-col text-center w-full mb-20 ">
             <h2 className="text-xs text-black tracking-widest font-medium title-font mb-1">
               ASTRA
             </h2>
@@ -358,7 +358,7 @@ const index = () => {
               Reset
             </button> */}
             <button
-              className="flex mx-auto  text-white bg-purple-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+              className="flex mx-auto  text-white bg-blue-300 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-lg"
               onClick={(e) => {
                 handlespeechSubmit(e);
               }}
@@ -367,7 +367,7 @@ const index = () => {
             </button>
           </div>
           <input
-            className="flex mx-auto  text-white bg-purple-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-lg mt-2"
+            className="flex mx-auto  text-white bg-blue-300 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-lg mt-2"
             placeholder="Want a report? enter your email"
             onChange={(e) => {
               setEmail(e.target.value);

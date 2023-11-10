@@ -8,6 +8,9 @@ const MeetWithDoctorSchema = new Schema({
     meet_link: {
         type: String,
     },
+    time: {
+        type: String, 
+    },
 });
 
 // Define a separate schema for key-value pairs
@@ -17,6 +20,9 @@ const MeetWithUserSchema = new Schema({
     },
     meet_link: {
         type: String,
+    },
+    time: {
+        type: String, 
     },
 });
 

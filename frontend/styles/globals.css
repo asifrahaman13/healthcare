@@ -7,3 +7,52 @@ body{
 }
   
 
+/* Custom styles for react-datepicker */
+.react-datepicker {
+  font-family: 'Arial', sans-serif;
+}
+
+.react-datepicker__header {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.react-datepicker__day-names {
+  display: flex;
+  justify-content: space-around;
+}
+
+.react-datepicker__day-name {
+  color: #555;
+}
+
+.react-datepicker__day {
+  color: #333;
+  &:hover {
+    background-color: #3498db;
+    color: #fff;
+  }
+}
+
+.react-datepicker__time-container {
+  width: 100%;
+}
+
+.react-datepicker__time-box {
+  width: 70px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.react-datepicker__time-list {
+  list-style: none;
+  padding: 0;
+}
+
+.react-datepicker__time-list-item {
+  cursor: pointer;
+  &:hover {
+    background-color: #3498db;
+    color: #fff;
+  }
+}
