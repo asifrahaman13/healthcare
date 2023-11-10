@@ -34,12 +34,7 @@ user_appointment_router.post('/appointment', checkUserRegistration, async (req, 
     });
 
     try {
-        if (!decoded) {
-            return res.status(401).json({
-                success: false,
-                message: "Invalid access token.",
-            });
-        }
+    
 
         const { email } = decoded;
         const { appointments } = req.body;

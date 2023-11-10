@@ -74,7 +74,7 @@ const Room = () => {
       });
   };
 
-  
+
 
   const handleRoomCreated = () => {
     hostRef.current = true;
@@ -250,19 +250,64 @@ const Room = () => {
   };
 
   return (
-    <div>
-      <video autoPlay ref={userVideoRef} />
-      <video autoPlay ref={peerVideoRef} />
-      <button onClick={toggleMic} type="button">
-        {micActive ? 'Mute Mic' : 'UnMute Mic'}
-      </button>
-      <button onClick={leaveRoom} type="button">
-        Leave
-      </button>
-      <button onClick={toggleCamera} type="button">
-        {cameraActive ? 'Stop Camera' : 'Start Camera'}
-      </button>
-    </div>
+    // <div>
+    //   <video autoPlay ref={userVideoRef} />
+    //   <video autoPlay ref={peerVideoRef} />
+    //   <button onClick={toggleMic} type="button">
+    //     {micActive ? 'Mute Mic' : 'UnMute Mic'}
+    //   </button>
+    //   <button onClick={leaveRoom} type="button">
+    //     Leave
+    //   </button>
+    //   <button onClick={toggleCamera} type="button">
+    //     {cameraActive ? 'Stop Camera' : 'Start Camera'}
+    //   </button>
+    // </div>
+    <>
+      <div class="flex flex-col items-center justify-center h-screen bg-gray-900 text-white">
+        <div class="flex space-x-4 mb-8 w-90">
+          <div class="relative w-full aspect-w-16 aspect-h-9">
+            <video autoPlay ref={userVideoRef} class="rounded-lg shadow-md object-cover w-full h-full" />
+            <div class="absolute top-2 right-2">
+              <span class="bg-green-500 text-white py-1 px-2 rounded-full">You</span>
+            </div>
+          </div>
+          <div class="relative w-full aspect-w-16 aspect-h-9">
+            <video autoPlay ref={peerVideoRef} class="rounded-lg shadow-md object-cover w-full h-full" />
+            <div class="absolute top-2 right-2">
+              <span class="bg-blue-500 text-white py-1 px-2 rounded-full">Peer</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex space-x-4 mb-4">
+          <button
+            onClick={toggleMic}
+            type="button"
+            class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue"
+          >
+            {micActive ? 'Mute Mic' : 'UnMute Mic'}
+          </button>
+          <button
+            onClick={leaveRoom}
+            type="button"
+            class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline-red"
+          >
+            Leave
+          </button>
+          <button
+            onClick={toggleCamera}
+            type="button"
+            class="bg-yellow-500 hover:bg-yellow-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline-yellow"
+          >
+            {cameraActive ? 'Stop Camera' : 'Start Camera'}
+          </button>
+        </div>
+      </div>
+
+
+
+    </>
   );
 };
 

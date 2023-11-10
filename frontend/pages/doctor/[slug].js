@@ -4,6 +4,7 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
 
+
 const BACKEND_DOMAIN = process.env.NEXT_PUBLIC_BACKEND_DOMAIN;
 
 const Page = ({ doctorDetails }) => {
@@ -16,6 +17,10 @@ const Page = ({ doctorDetails }) => {
     const uniqueId = uuidv4();
 
     try {
+      const user_access_token=localStorage.getItem('user_access_token')
+      if(!user_access_token){
+        return
+      }
       const appointment = await axios.post(`${BACKEND_DOMAIN}/users/appointment`, {
         email: "johndoe@example.com",
         appointments: {
@@ -25,7 +30,7 @@ const Page = ({ doctorDetails }) => {
       },
         {
           headers: {
-            Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5kb2VAZXhhbXBsZS5jb20iLCJmdWxsTmFtZSI6IkpvaG4gRG9lIiwiYWRkcmVzcyI6InVzZXJfcm9sZSIsInByb2Zlc3Npb24iOiJTb21lIERlcGFydG1lbnQiLCJpYXQiOjE2OTk1NTMyODMsImV4cCI6MTcwMDE1ODA4M30.f3hVb718C24ZFwl1H57RUOvCkImJ7SdQ-mgGS8IRlJk"}`
+            Authorization: `Bearer ${user_access_token}`
           }
         })
       console.log(appointment)

@@ -192,7 +192,7 @@ doctor_signup_router.post("/login", async (req, res) => {
     }
 });
 
-doctor_signup_router.get("/doctor-details", (req, res) => {
+doctor_signup_router.get("/doctor-details", async(req, res) => {
     const accessToken = req.headers.authorization; // Assuming you send the access token in the "Authorization" header
 
 
@@ -207,7 +207,7 @@ doctor_signup_router.get("/doctor-details", (req, res) => {
 
 
     // Verify the access token
-    jwt.verify(token, SECRET_KEY, (err, decoded) => {
+    jwt.verify(token, SECRET_KEY, async(err, decoded) => {
         if (err) {
             return res.status(401).json({
                 success: false,
@@ -218,11 +218,15 @@ doctor_signup_router.get("/doctor-details", (req, res) => {
         // If the token is valid, you can access user details from the decoded payload
         const { email, fullName, education, experience, role, department } = decoded;
 
+        const doctor=await Doctor.findOne({email})
+
+        console.log(doctor)
+
         // You can now return the user details in the response
         res.json({
             success: true,
             userDetails: {
-                email, fullName, education, experience, role, department
+                email, fullName, education, experience, role, department, appointments:doctor.appointments
             },
         });
     });

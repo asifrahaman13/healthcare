@@ -137,6 +137,7 @@ user_signup_router.post("/resend-otp", async (req, res) => {
 
 // Login API
 user_signup_router.post("/login", async (req, res) => {
+
     try {
         var { email, password } = req.body;
 
@@ -201,7 +202,7 @@ user_signup_router.get("/user-details", (req, res) => {
 
 
     // Verify the access token
-    jwt.verify(token, SECRET_KEY, (err, decoded) => {
+    jwt.verify(token, SECRET_KEY, async (err, decoded) => {
         if (err) {
             return res.status(401).json({
                 success: false,
@@ -211,12 +212,13 @@ user_signup_router.get("/user-details", (req, res) => {
 
         // If the token is valid, you can access user details from the decoded payload
         const { email, fullName, address, profession } = decoded;
+        const user = await User.findOne({ email })
 
         // You can now return the user details in the response
         res.json({
             success: true,
             userDetails: {
-                email, fullName, address, profession
+                email, fullName, address, profession, appointments:user.appointments
             },
         });
     });
