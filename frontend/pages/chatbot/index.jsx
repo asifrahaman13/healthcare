@@ -2,40 +2,20 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import Loader from "@/components/Loader";
-// import SpeechRecognition, {
-//   useSpeechRecognition,
-// } from "react-speech-recognition";
+import ReactTyped from "react-typed";
 
+const CHATBOT_DOMAIN = process.env.NEXT_PUBLIC_CHATBOT_DOMAIN;
 
 const index = () => {
-    const [loadingTimeout, setLoadingTimeout] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState({
-    msg: "",
-    statuscode: 0,
-  });
+  const [chats, setChats] = useState([]);
+  const [loadingTimeout, setLoadingTimeout] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const [inputText, setInputText] = useState(""); // Add state for the input box
   const [email, setEmail] = useState(""); // Add state for the email box
 
-//   const {
-//     transcript,
-//     listening,
-//     resetTranscript,
-//     browserSupportsSpeechRecognition,
-//   } = useSpeechRecognition();
-
-//   if (!browserSupportsSpeechRecognition) {
-//     return <span>Browser doesn't support speech recognition.</span>;
-//   }
-
-  const handleStart = (e) => {
-    e.preventDefault();
-    SpeechRecognition.startListening({ continuous: true });
-  };
-
   const handlespeechSubmit = async (e) => {
     e.preventDefault();
-
 
     setIsLoading(true);
     setLoadingTimeout(
@@ -53,19 +33,12 @@ const index = () => {
       // At least one of the fields is empty or contains only whitespace
       // Handle the validation error here
       console.error("Please provide valid values for all fields.");
-      setMessage({
-        msg: "Something went wrong. Plesae fill the details properly",
-        statuscode: 404,
-      });
+
       return;
     }
 
     try {
-      setMessage({
-        msg: "Everything is successfully sent. Wait a few seconds to get your response.",
-        statuscode: 200,
-      });
-      const response = await axios.post("http://localhost:5000/postquestion/", {
+      const response = await axios.post(`${CHATBOT_DOMAIN}/postquestion/`, {
         question: inputText,
         username: username,
         email_support: email,
@@ -73,10 +46,7 @@ const index = () => {
 
       if (response.status == 200) {
         setIsLoading(false);
-        setQuery((prevQuery) => ({
-          ...prevQuery,
-          answer: response.data.response,
-        }));
+
         setChats((prevChats) => [
           ...prevChats,
           {
@@ -89,38 +59,15 @@ const index = () => {
 
         console.log(email, email != null && email.length > 0);
         if (email != null && email.length > 0) {
-          setMessage({
-            msg: "Congratulation your result is here. You should have also received email now.",
-            statuscode: 200,
-          });
         }
       } else {
-        setMessage({
-          msg: "Something is wrong. Please enter your details properly.",
-          statuscode: 404,
-        });
       }
-    } catch (err) {
-      setMessage({
-        msg: "Something is wrong. Please enter your details properly.",
-        statuscode: 404,
-      });
-    }
-  };
-
-  const stopListening = (e) => {
-    e.preventDefault();
-    SpeechRecognition.stopListening();
+    } catch (err) {}
   };
 
   const handleInputChange = (e) => {
     setInputText(e.target.value);
   };
-
-  // Update the inputText state with the transcript value
-//   React.useEffect(() => {
-//     setInputText(transcript);
-//   }, [transcript]);
 
   const [username, setUsername] = useState("");
 
@@ -131,12 +78,6 @@ const index = () => {
   useEffect(() => {
     generateUniqueId();
   }, []);
-
-  const [query, setQuery] = useState({
-    question: "",
-    answer: "",
-    username: "",
-  });
 
   // Function to format text with bold and italic tags
   const formatText = (text) => {
@@ -149,21 +90,11 @@ const index = () => {
     return text;
   };
 
-  const [chats, setChats] = useState([]); // Initialize chats as an empty array
-
-  const [showToast, setShowToast] = useState(false);
-
-  // Function to show the toast
-  const handleShowToast = () => {
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 3000); // Hide the toast after 3 seconds (adjust as needed)
-  };
+  // Initialize chats as an empty array
 
   return (
     <>
-    {isLoading && <Loader />}
+      {isLoading && <Loader />}
       <section className="text-gray-600 body-font bg-gradient-to-r from-blue-200 to-indigo-400 bg-opacity-50">
         <div className="container px-5 py-24 mx-auto ">
           <div className="flex flex-col text-center w-full mb-20 ">
@@ -260,9 +191,7 @@ const index = () => {
           </div>
         </div>
       </section>
-      <div className="relative">
-        {showToast && <Success message={message} />}
-      </div>
+      <div className="relative"></div>
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           {chats.map((item, idx) => (
@@ -272,8 +201,9 @@ const index = () => {
                   <h2 className="text-black  text-lg title-font font-medium mb-2">
                     USER QUESTION
                   </h2>
-                  <p className="leading-relaxed text-base text-gray-300">
-                    {item.question}
+                  <p className="leading-relaxed text-base text-gray-900">
+                    
+                    <ReactTyped strings={[item.question]} typeSpeed={10} />
                   </p>
                 </div>
                 <div className="sm:w-32 sm:order-none order-first sm:h-32 h-20 w-20 sm:ml-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-black flex-shrink-0">
@@ -309,13 +239,19 @@ const index = () => {
                   <h2 className="text-black text-lg title-font font-medium mb-2">
                     GPT RESPONSE
                   </h2>
-                  <p
-                    className="leading-relaxed text-base text-gray-300"
-                    style={{ whiteSpace: "pre-line" }}
-                    dangerouslySetInnerHTML={{
-                      __html: formatText(item.answer),
-                    }}
-                  ></p>
+
+                  <ReactTyped
+                    strings={[formatText(item.answer)]}
+                    typeSpeed={10}
+                  >
+                    <p
+                      className="leading-relaxed text-base text-gray-900"
+                      style={{ whiteSpace: "pre-line" }}
+                      dangerouslySetInnerHTML={{
+                        __html: formatText(item.answer),
+                      }}
+                    ></p>
+                  </ReactTyped>
                 </div>
               </div>
             </div>

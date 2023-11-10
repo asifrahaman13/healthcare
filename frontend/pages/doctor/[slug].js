@@ -14,7 +14,6 @@ const Page = ({ doctorDetails }) => {
 
   async function makeAppointment(e) {
     e.preventDefault();
-    console.log(value.toISOString());
     const formattedDate = `${value.getFullYear()}-${(value.getMonth() + 1).toString().padStart(2, '0')}-${value.getDate().toString().padStart(2, '0')}T${value.getHours().toString().padStart(2, '0')}:${value.getMinutes().toString().padStart(2, '0')}:00`;
     console.log(formattedDate);
     const uniqueId = uuidv4();
@@ -36,8 +35,6 @@ const Page = ({ doctorDetails }) => {
             Authorization: `Bearer ${user_access_token}`
           }
         })
-      console.log(appointment)
-
     }
     catch (err) {
       console.error(err);
@@ -63,47 +60,63 @@ const Page = ({ doctorDetails }) => {
 
   return (
     <>
-   
-      <div className="container mx-auto p-4">
-        
-        <div className=" from-blue-100 to-blue-200 rounded-lg  p-6">
-          
-          <div className="text-center mb-4">
-            <h1 className="text-4xl font-semibold text-blue-600">Doctor Details</h1>
+      <div class="relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl">
+        <div class="px-6">
+          <div class="flex flex-wrap justify-center">
+            <div class="w-full flex justify-center">
+              <div class="relative">
+                <img src="https://img.freepik.com/premium-vector/young-smiling-doctor-with-stethoscope3d-vector-people-character-illustrationcartoon-minimal-style_365941-707.jpg" class="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px]" />
+              </div>
+            </div>
+            <div class="w-full text-center mt-20">
+              <div class="flex justify-center lg:pt-4 pt-8 pb-0">
+                <div class="p-3 text-center">
+                  <span class="text-xl font-bold block uppercase tracking-wide text-slate-700">{getDoctorDetails.experience}</span>
+                  <span class="text-sm text-slate-400">Experience</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-4">
-              <div className="flex items-center">
-                <span className="font-semibold text-gray-700">Full Name:</span>
-                <span className="ml-2 text-xl font-medium text-blue-800">{getDoctorDetails.fullName}</span>
+          <div class="text-center mt-2">
+            <h3 class="text-2xl text-slate-700 font-bold leading-normal mb-1">{getDoctorDetails.fullName}</h3>
+            <div class="text-xs mt-0 mb-2 text-slate-400 font-bold uppercase">
+              <i class="fas fa-map-marker-alt mr-2 text-slate-400 opacity-75"></i>{getDoctorDetails.email}
+            </div>
+          </div>
+          <div class="mt-6 py-6 border-t border-slate-200 text-center">
+            <div class="flex flex-wrap justify-center">
+              <div class="w-full px-4">
+                Address
+                <p class="font-light leading-relaxed text-slate-600 mb-4">
+                  {getDoctorDetails.address}
+                </p>
+
               </div>
-              <div className="flex items-center">
-                <span className="font-semibold text-gray-700">Education:</span>
-                <span className="ml-2 text-xl font-medium text-blue-800">{getDoctorDetails.education}</span>
+              <div class="w-full px-4">
+                Education
+                <p class="font-light leading-relaxed text-slate-600 mb-4">
+                  {getDoctorDetails.education}
+                </p>
               </div>
-              <div className="flex items-center">
-                <span className="font-semibold text-gray-700">Address:</span>
-                <span className="ml-2 text-xl font-medium text-blue-800">{getDoctorDetails.address}</span>
-              </div>
-              <div className="flex items-center">
-                <span className="font-semibold text-gray-700">Email:</span>
-                <span className="ml-2 text-xl font-medium text-blue-800">{getDoctorDetails.email}</span>
-              </div>
-              <div className="flex items-center">
-                <span className="font-semibold text-gray-700">Experience:</span>
-                <span className="ml-2 text-xl font-medium text-blue-800">{getDoctorDetails.experience}</span>
-              </div>
-              <Calendar onChange={onChange} value={value} />
-              <button class="bg-gray-100 inline-flex py-3 px-5 rounded-lg items-center lg:ml-4 md:ml-0 ml-4 md:mt-4 mt-0 lg:mt-0 hover:bg-gray-200 focus:outline-none">
-                <span class="ml-4 flex items-start flex-col leading-none">
-                  <span class="title-font font-medium" onClick={(e) => { makeAppointment(e) }}>Make an appointment now</span>
-                </span>
-              </button>
             </div>
           </div>
         </div>
       </div>
 
+
+      <div className="flex flex-col items-center justify-center mb-16">
+        <span className="title-font font-medium mb-8" onClick={makeAppointment}>
+          Please select a date and time
+        </span>
+        <Calendar onChange={onChange} value={value} />
+        <button className="bg-gray-100 inline-flex py-3 px-5 rounded-lg items-center mt-4 hover:bg-gray-200 focus:outline-none">
+          <span className="ml-4 flex items-start flex-col leading-none">
+            <span className="title-font font-medium" onClick={makeAppointment}>
+              Make an appointment now
+            </span>
+          </span>
+        </button>
+      </div>
 
     </>
   );

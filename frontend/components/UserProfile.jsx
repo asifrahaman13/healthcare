@@ -128,9 +128,7 @@ const UserProfile = ({ access_token }) => {
                   <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                   <path d="M22 4L12 14.01l-3-3"></path>
                 </svg>
-                <span class="title-font font-medium">
-                  {userDetails.email}
-                </span>
+                <span class="title-font font-medium">{userDetails.email}</span>
               </div>
             </div>
             <div class="p-2 sm:w-1/2 w-full">
@@ -234,9 +232,9 @@ const UserProfile = ({ access_token }) => {
                     <h1 class="title-font sm:text-sm text-xl font-medium text-gray-900 ">
                       {item.doctor}
                     </h1>
-                    <h2 class="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">{formatTime(item.time)}</h2>
-
-                    <p>Meet Link - {item.meet_link} </p>
+                    <h2 class="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">
+                      {formatTime(item.time)}
+                    </h2>
 
                     <div class="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4"></div>
                   </div>

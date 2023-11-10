@@ -1,40 +1,8 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Link from "next/link";
+import React from "react";
 import NavLink from "next/link";
-
-const BACKEND_DOMAIN = process.env.NEXT_PUBLIC_BACKEND_DOMAIN;
+import ReactTyped from "react-typed";
 
 const Doctors = () => {
-  const [doctors, setDoctors] = useState([
-    {
-      _id: "",
-      fullName: "",
-      educations: "", // Fixed the typo in "educations"
-      department: "",
-      address: "",
-    },
-  ]);
-
-  const fetchDoctors = async () => {
-    try {
-      const response = await axios.get(
-        `${BACKEND_DOMAIN}/users/get-all-doctors`,
-        {}
-      );
-
-      setDoctors(response.data);
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      throw error;
-    }
-  };
-
-  useEffect(() => {
-    fetchDoctors();
-  }, []);
-
   return (
     <>
       <div class="flex flex-col text-center w-full mb-20">
@@ -45,17 +13,20 @@ const Doctors = () => {
           SEE OUR REGISTERED DOCTORS
         </h1>
         <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
-          Select from the cards below. For example if you want constultancy from
-          the Psychologist then click on the PSYCHOLOGY CARD.Remeber you can
-          have constultancy with any doctors any point of time. Make sure to
-          have an appointment with the doctor to have more in depth treatment.
+          <ReactTyped
+            strings={[
+              "Select from the cards below. For example if you want constultancy from the Psychologist then click on the PSYCHOLOGY CARD.Remeber you can have constultancy with any doctors any point of time. Make sure to have an appointment with the doctor to have more in depth treatment.",
+            ]}
+            typeSpeed={10}
+            loop
+          />
         </p>
       </div>
       <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto">
           <div class="flex flex-wrap -m-4">
             <div class="p-4 lg:w-1/3 transform transition-transform hover:translate-y-[-8px]">
-              <Link href="/specialists/psychologists">
+              <NavLink href="/specialists/psychologists">
                 <div class="h-full bg-green-300 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
                   <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                     CATEGORY
@@ -68,11 +39,11 @@ const Doctors = () => {
                     track. Click here.
                   </p>
                 </div>
-              </Link>
+              </NavLink>
             </div>
 
             <div class="p-4 lg:w-1/3 transform transition-transform hover:translate-y-[-8px]">
-              <Link href="/specialists/neurologists">
+              <NavLink href="/specialists/neurologists">
                 <div class="h-full bg-green-300 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
                   <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                     CATEGORY
@@ -85,10 +56,10 @@ const Doctors = () => {
                     health reports here.
                   </p>
                 </div>
-              </Link>
+              </NavLink>
             </div>
             <div class="p-4 lg:w-1/3 transform transition-transform hover:translate-y-[-8px]">
-              <Link href="/specialists/ophthalmologists">
+              <NavLink href="/specialists/ophthalmologists">
                 <div class="h-full bg-green-300 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
                   <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                     CATEGORY
@@ -101,10 +72,10 @@ const Doctors = () => {
                     globe.
                   </p>
                 </div>
-              </Link>
+              </NavLink>
             </div>
             <div class="p-4 lg:w-1/3 translate-y-[-8px]">
-              <Link href="/specialists/cardiologists">
+              <NavLink href="/specialists/cardiologists">
                 <div class="h-full bg-green-300 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
                   <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                     CATEGORY
@@ -117,7 +88,7 @@ const Doctors = () => {
                     the world.
                   </p>
                 </div>
-              </Link>
+              </NavLink>
             </div>
           </div>
         </div>
