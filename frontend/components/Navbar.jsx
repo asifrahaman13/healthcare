@@ -34,6 +34,9 @@ const Navbar = () => {
             <NavLink class="mr-5 hover:text-gray-900" href="/">
               Home
             </NavLink>
+            <NavLink class="mr-5 hover:text-gray-900" href="/chatbot">
+              Chatbot
+            </NavLink>
             <NavLink class="mr-5 hover:text-gray-900" href="/about">
               About
             </NavLink>
