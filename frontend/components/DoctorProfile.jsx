@@ -43,7 +43,7 @@ const DoctorProfile = ({ access_token }) => {
           }
         );
         setDoctorDetails(doctor.data.userDetails);
-        console.log(doctor)
+        console.log(doctor);
         console.log(doctorDetails.data);
       } catch (err) {
         console.log(err);
@@ -275,14 +275,16 @@ const DoctorProfile = ({ access_token }) => {
                   class="text-black-500 inline-flex items-center"
                   href={`/room/${item.meet_link}`}
                 >
-                  <div class="bg-green-500 h-full bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative transition duration-300 ease-in-out transform hover:scale-105">
+                  <div class="bg-yellow-300 h-full bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative transition duration-300 ease-in-out transform hover:scale-105">
                     <h2 class="tracking-widest text-xs title-font font-medium text-gray-800 mb-1">
                       user email
                     </h2>
                     <h1 class="title-font sm:text-sm text-xl font-medium text-gray-900 ">
                       {item.user}
                     </h1>
-                    <h2 class="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">{formatTime(item.time)}</h2>
+                    <h2 class="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">
+                      {formatTime(item.time)}
+                    </h2>
                     <p>Meet Link - {item.meet_link} </p>
                     <div class="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4"></div>
                   </div>

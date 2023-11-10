@@ -225,7 +225,7 @@ const UserProfile = ({ access_token }) => {
                   class="text-indigo-500 inline-flex items-center"
                   href={`/room/${item.meet_link}`}
                 >
-                  <div class="bg-green-500 h-full bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative transition duration-300 ease-in-out transform hover:scale-105">
+                  <div class="bg-yellow-300 h-full bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative transition duration-300 ease-in-out transform hover:scale-105">
                     <h2 class="tracking-widest text-xs title-font font-medium text-gray-800 mb-1">
                       user email
                     </h2>

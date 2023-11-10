@@ -5,10 +5,12 @@ import axios from "axios";
 import Services from "../components/Services.jsx";
 import Header from "../components/Header.jsx";
 import ReactTyped from "react-typed";
+import Faqs from "../components/Faqs.jsx"
 
 const BACKEND_DOMAIN = process.env.NEXT_PUBLIC_BACKEND_DOMAIN;
 
 export default function Home() {
+
   const [doctors, setDoctors] = useState([
     {
       _id: "",
@@ -38,15 +40,13 @@ export default function Home() {
     fetchDoctors();
   }, []);
 
-
-  
   return (
     <>
       <div className="bg-gray-100 font-sans">
         <div className="text-black py-20 shadow-lg bg-gradient-to-r from-blue-200 to-indigo-400 bg-opacity-50">
           <div className="container mx-auto text-center">
             <h1 className="text-5xl font-bold mb-4 text-black typing-effect">
-            <ReactTyped strings={["Welcome to Doco"]} typeSpeed={100} loop  />
+              <ReactTyped strings={["Welcome to Doco"]} typeSpeed={100} loop />
             </h1>
             <p className="text-lg mb-8 text-black">
               Providing quality healthcare services for a healthier tomorrow.
@@ -72,9 +72,7 @@ export default function Home() {
         <section id="about" className="bg-gray-200 py-16">
           <div className="container mx-auto text-center">
             <h2 className="text-3xl font-bold mb-8">
-              
-
-            <ReactTyped strings={["See our doctors"]} typeSpeed={100} loop />
+              <ReactTyped strings={["See our doctors"]} typeSpeed={100} loop />
             </h2>
             {/* Add information about your healthcare organization */}
           </div>
@@ -116,8 +114,11 @@ export default function Home() {
         <section id="about" className="bg-gray-200 py-16 mt-8">
           <div className="container mx-auto text-center">
             <h2 className="text-3xl font-bold mb-8">
-             
-              <ReactTyped strings={[" Partners all over the globe"]} typeSpeed={100} loop  />
+              <ReactTyped
+                strings={[" Partners all over the globe"]}
+                typeSpeed={100}
+                loop
+              />
             </h2>
             {/* Add information about your healthcare organization */}
           </div>
@@ -318,8 +319,11 @@ export default function Home() {
               ROOF PARTY POLAROID
             </h2>
             <h1 className="text-3xl sm:text-4xl font-medium text-gray-900">
-            
-              <ReactTyped strings={["See Our Customers' Feedback"]} typeSpeed={100} loop  />
+              <ReactTyped
+                strings={["See Our Customers' Feedback"]}
+                typeSpeed={100}
+                loop
+              />
             </h1>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
@@ -451,6 +455,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+
+      <Faqs/>
     </>
   );
 }
