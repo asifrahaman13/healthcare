@@ -27,13 +27,11 @@ const Page = () => {
           `${BACKEND_DOMAIN}/utility/get-${slug}`
         );
         setDoctors(doctors.data);
-        console.log(doctors.data);
       } catch (err) {
         console.log(err);
       }
     }
     getSpecialistDoctors();
-    console.log(slug);
     switch (slug) {
       case "cardiologists":
         setColor("bg-red-200");

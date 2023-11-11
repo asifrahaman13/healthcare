@@ -12,7 +12,7 @@ export default async function handler(req, res) {
                 product_data: {
                   name: 'Your Product Name',
                 },
-                unit_amount: 100, // Amount in cents, for $12.00
+                unit_amount: 240000, // Amount in cents, for $12.00
               },
               quantity: 1,
             },

@@ -18,7 +18,6 @@ const Doctors = () => {
       const departmentCounts = await axios.get(
         `${BACKEND_DOMAIN}/utility/department-counts`
       );
-      console.log(departmentCounts);
       setDepartmentalStats(departmentCounts.data);
     } catch (err) {
       console.log(err);

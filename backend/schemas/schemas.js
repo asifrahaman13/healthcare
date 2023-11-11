@@ -113,6 +113,4 @@ const Doctor = model("doctors", DoctorSchema)
 const MeetWithDoctor = model('MeetWithDoctor', MeetWithDoctorSchema);
 const MeetWithuser = model('MeetWithUser', MeetWithUserSchema);
 
-
-
 export { User, Doctor, MeetWithDoctor, MeetWithuser };

@@ -47,7 +47,6 @@ const Page = ({ doctorDetails }) => {
       async function getDoctorDetails(doctor_id) {
         try {
           const response = await axios.get(`${BACKEND_DOMAIN}/users/get-doctor-details/${doctor_id}`);
-          console.log(response.data);
           setDoctorDetails(response.data);
         } catch (error) {
           console.error(error);

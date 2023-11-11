@@ -50,7 +50,6 @@ export default function VerifyOTP() {
     const response = await axios.post(`${BACKEND_DOMAIN}/doctors/resend-otp`, {
       email: email,
     });
-    console.log(response);
   };
 
   return (

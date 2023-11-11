@@ -54,8 +54,6 @@ const index = () => {
         ]);
 
         clearTimeout(loadingTimeout);
-
-        console.log(email, email != null && email.length > 0);
         if (email != null && email.length > 0) {
         }
       } else {

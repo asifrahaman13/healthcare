@@ -15,7 +15,6 @@ const backend_domain = process.env.NEXT_PUBLIC_BACKEND_DOMAIN;
 
 const UserProfile = ({ access_token }) => {
   async function handleSubmit() {
-    console.log(localStorage.getItem("user_access_token"));
     try {
       const subscribe = await axios.post(
         `${BACKEND_DOMAIN}/users/subscribed`,
@@ -26,9 +25,6 @@ const UserProfile = ({ access_token }) => {
           },
         }
       );
-      console.log(subscribe);
-
-      console.log(subscribe);
     } catch (err) {
       console.log(err);
     }
@@ -37,7 +33,7 @@ const UserProfile = ({ access_token }) => {
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
-    console.log(query);
+
     if (query.get("success")) {
       handleSubmit();
       console.log("Order placed! You will receive an email confirmation.");
@@ -389,7 +385,7 @@ const UserProfile = ({ access_token }) => {
                   PRO
                 </h2>
                 <h1 class="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
-                  <span>$38</span>
+                  <span>₹ 200</span>
                   <span class="text-lg ml-1 font-normal text-gray-500">
                     /mo
                   </span>
