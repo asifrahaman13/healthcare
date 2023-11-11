@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from "uuid";
 import Loader from "@/components/Loader";
 import ReactTyped from "react-typed";
 
-
 const CHATBOT_DOMAIN = process.env.NEXT_PUBLIC_CHATBOT_DOMAIN;
 
 const index = () => {
@@ -68,7 +67,6 @@ const index = () => {
     setInputText(e.target.value);
   };
 
-
   const generateUniqueId = () => {
     setUsername(uuidv4());
   };
@@ -99,8 +97,12 @@ const index = () => {
             <h2 className="text-xs text-black tracking-widest font-medium title-font mb-1">
               ASTRA
             </h2>
-            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">     
-              <ReactTyped strings={["CHAT WITH OUR APPLICATION"]} typeSpeed={50} loop />
+            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
+              <ReactTyped
+                strings={["CHAT WITH OUR APPLICATION"]}
+                typeSpeed={50}
+                loop
+              />
             </h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-900">
               Our application is capable of chatting with high level of
@@ -196,14 +198,14 @@ const index = () => {
             <div key={idx} className="cont py-7">
               <div className="flex items-center lg:w-3/5 mx-auto  pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
                 <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-                  <h2 className="text-black  text-lg title-font font-medium mb-2">
+                  <h2 className="text-purple-700  text-lg title-font font-medium mb-2">
                     USER QUESTION
                   </h2>
                   <p className="leading-relaxed text-base text-gray-900">
                     <ReactTyped strings={[item.question]} typeSpeed={10} />
                   </p>
                 </div>
-                <div className="sm:w-32 sm:order-none order-first sm:h-32 h-20 w-20 sm:ml-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-black flex-shrink-0">
+                <div className="sm:w-32 sm:order-none order-first sm:h-32 h-20 w-20 sm:ml-10 inline-flex items-center justify-center rounded-full bg-indigo-500 text-black flex-shrink-0">
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -219,7 +221,7 @@ const index = () => {
                 </div>
               </div>
               <div className="flex items-center lg:w-3/5 mx-auto sm:flex-row flex-col">
-                <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-black flex-shrink-0">
+                <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-500 text-black flex-shrink-0">
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -233,7 +235,7 @@ const index = () => {
                   </svg>
                 </div>
                 <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-                  <h2 className="text-black text-lg title-font font-medium mb-2">
+                  <h2 className="text-purple-700 text-lg title-font font-medium mb-2">
                     GPT RESPONSE
                   </h2>
 

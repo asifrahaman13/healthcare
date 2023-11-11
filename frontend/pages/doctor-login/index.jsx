@@ -23,7 +23,7 @@ export default function Login() {
         setMessage(response.data.message);
         localStorage.setItem("doctor_access_token", response.data.accessToken);
 
-        router.push("/");
+        router.push("/profile");
       } else {
         console.error("Sorry wrong credentials");
         setMessage(response.data.message);

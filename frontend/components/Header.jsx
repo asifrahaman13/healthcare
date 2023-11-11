@@ -30,7 +30,7 @@ const Header = () => {
               Your remedies
             </h1>
             <p class="mb-8 leading-relaxed">
-              We are shasping the healthcare industry of 21th century. Our
+              We are reshaping the healthcare industry of 21th century. Our
               vision is to provide perfect healthcare services to all over the
               globe. Get doctors advice from any where and keep your health in
               healthy conditions. We strongly respect your privacy and data.
@@ -58,7 +58,7 @@ const Header = () => {
             />
           </div>
         </div>
-        <section class="text-gray-600 body-font">
+        <section class="text-gray-600 body-font ">
           <div class="container px-5 py-24 mx-auto">
             <div class="flex flex-wrap -m-4 text-center">
               <div class="p-4 sm:w-1/3 w-1/2">

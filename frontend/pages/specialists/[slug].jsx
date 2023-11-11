@@ -38,7 +38,7 @@ const Page = () => {
         setColor("bg-red-200");
         break;
       case "neurologists":
-        setColor("bg-white-200");
+        setColor("bg-orange-200");
         break;
       case "ophthalmologists":
         setColor("bg-green-200");

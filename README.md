@@ -51,7 +51,7 @@ pip install -r requirements.txt
 Now run the backend server.
 
 ```
-uvicorn main:app --reload
+uvicorn main:app --reload --port=5000
 ```
 </br>
 

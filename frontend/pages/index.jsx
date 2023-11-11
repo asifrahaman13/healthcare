@@ -61,11 +61,9 @@ export default function Home() {
 
         <Header />
         {/* Services Section */}
-        <section id="services" className="py-16">
-          <div className="container mx-auto text-center">
+    
             <Services />
-          </div>
-        </section>
+       
 
         {/* About Us Section */}
         <section id="about" className="py-16">
