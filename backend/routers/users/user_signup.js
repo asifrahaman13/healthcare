@@ -187,7 +187,7 @@ user_signup_router.post("/login", async (req, res) => {
     }
 });
 
-user_signup_router.get("/user-details", (req, res) => {
+user_signup_router.get("/user-details", async (req, res) => {
     const accessToken = req.headers.authorization; // Assuming you send the access token in the "Authorization" header
     try {
         // If there is no bearer token or if it is not bearer token then return error message.
@@ -217,17 +217,51 @@ user_signup_router.get("/user-details", (req, res) => {
             res.json({
                 success: true,
                 userDetails: {
-                    email, fullName, address, profession, appointments: user.appointments
+                    email, fullName, address, profession, isSubscribed: user.isSubscribed,appointments: user.appointments
                 },
             });
         });
     }
     catch (err) {
         console.log(err);
+        res.status(500).json({ success: false, message: "Internal Server Error" });
     }
 
-
-
 });
+
+user_signup_router.post("/subscribed", async (req, res) => {
+    const accessToken = req.headers.authorization;
+    try {
+        // If there is no bearer token or if it is not bearer token then return error message.
+        if (!accessToken || !accessToken.startsWith("Bearer ")) {
+            return res.status(401).json({
+                success: false,
+                message: "Access token is missing or not in the correct format.",
+            });
+        }
+        const token = accessToken.split("Bearer ")[1];
+        // Verify the access token
+        jwt.verify(token, SECRET_KEY, async (err, decoded) => {
+            if (err) {
+                return res.status(401).json({
+                    success: false,
+                    message: "Invalid access token.",
+                });
+            }
+            // If the token is valid, you can access user details from the decoded payload
+            const { email } = decoded;
+            const user = await User.findOne({ email })
+
+            user.isSubscribed = true;
+            user.save();
+
+            res.send({ "message": "Subscribed successfully" })
+        });
+
+    }
+    catch (err) {
+        res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+})
 
 export { user_signup_router }

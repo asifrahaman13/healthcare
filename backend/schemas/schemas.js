@@ -9,7 +9,7 @@ const MeetWithDoctorSchema = new Schema({
         type: String,
     },
     time: {
-        type: String, 
+        type: String,
     },
 });
 
@@ -22,7 +22,7 @@ const MeetWithUserSchema = new Schema({
         type: String,
     },
     time: {
-        type: String, 
+        type: String,
     },
 });
 
@@ -56,6 +56,10 @@ const userSchema = new Schema({
         type: Boolean,
         required: true,
     },
+    isSubscribed: {
+        type: Boolean,
+        default: false,
+    },
     appointments: {
         type: [MeetWithDoctorSchema],
         default: [],
@@ -71,7 +75,7 @@ const DoctorSchema = new Schema({
     education: {
         type: String,
     },
-    address:{
+    address: {
         type: String,
         required: true,
     },
@@ -111,4 +115,4 @@ const MeetWithuser = model('MeetWithUser', MeetWithUserSchema);
 
 
 
-export { User, Doctor, MeetWithDoctor,MeetWithuser };
+export { User, Doctor, MeetWithDoctor, MeetWithuser };

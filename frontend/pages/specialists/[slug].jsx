@@ -27,6 +27,7 @@ const Page = () => {
           `${BACKEND_DOMAIN}/utility/get-${slug}`
         );
         setDoctors(doctors.data);
+        console.log(doctors.data);
       } catch (err) {
         console.log(err);
       }

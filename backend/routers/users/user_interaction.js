@@ -1,8 +1,6 @@
 import express from 'express';
-import { hash, compare } from "bcrypt";
 import { config } from "dotenv";
 import { User, Doctor, MeetWithDoctor, MeetWithuser } from '../../schemas/schemas.js';
-import SendEmail from '../../email/email.js';
 // Import the required libraries
 import jwt from "jsonwebtoken";
 import { checkUserRegistration } from './user_middlware.js';
@@ -22,13 +20,6 @@ user_appointment_router.post('/appointment', checkUserRegistration, async (req, 
 
         // Verify the access token
         jwt.verify(token, SECRET_KEY, (err, tokenData) => {
-            if (err) {
-                return res.status(401).json({
-                    success: false,
-                    message: "Invalid access token.",
-                });
-            }
-
             // If the token is valid, set 'decoded' to tokenData
             decoded = tokenData;
         });
@@ -40,9 +31,16 @@ user_appointment_router.post('/appointment', checkUserRegistration, async (req, 
         const user = await User.findOne({ email });
 
         if (!user) {
-            return res.status(404).json({
+            return res.status(200).json({
                 success: false,
                 message: "User not found.",
+            });
+        }
+
+        if (user.isSubscribed == false) {
+            return res.status(404).json({
+                success: false,
+                message: "Please subscribe",
             });
         }
 
@@ -63,7 +61,7 @@ user_appointment_router.post('/appointment', checkUserRegistration, async (req, 
             const doctor = await Doctor.findOne({ email: doctor_email })
 
             if (doctor == null) {
-                res.status(400).send({ success: false, message: "The doctor does not exist" });
+                return res.status(400).send({ success: false, message: "The doctor does not exist" });
             }
 
             // Create a new appointment using the MeetWithDoctor schema
@@ -80,17 +78,17 @@ user_appointment_router.post('/appointment', checkUserRegistration, async (req, 
             await doctor.save();
         }
         catch (err) {
-            res.send({ "message": "The doctor does not exits" })
+            return res.send({ "message": "The doctor does not exits" })
         }
 
-        res.json({
+        return res.json({
             success: true,
             message: "Appointment added successfully.",
         });
 
     } catch (err) {
         console.error("Error adding appointment:", err);
-        res.status(500).json({ success: false, message: "Internal Server Error" });
+        return res.status(500).json({ success: false, message: "Internal Server Error" });
     }
 });
 
