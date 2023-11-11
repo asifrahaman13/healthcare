@@ -78,7 +78,7 @@ const Page = ({ doctorDetails }) => {
           </div>
           <div class="text-center mt-2">
             <h3 class="text-2xl text-slate-700 font-bold leading-normal mb-1">{getDoctorDetails.fullName}</h3>
-            <div class="text-xs mt-0 mb-2 text-slate-400 font-bold uppercase">
+            <div class="text-xs mt-0 mb-2 text-slate-400 font-bold">
               <i class="fas fa-map-marker-alt mr-2 text-slate-400 opacity-75"></i>{getDoctorDetails.email}
             </div>
           </div>
