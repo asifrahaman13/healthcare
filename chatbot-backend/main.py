@@ -2,11 +2,8 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi import FastAPI
 from pydantic import BaseModel
-from starlette.responses import Response
 from fastapi.middleware.cors import CORSMiddleware
 from msgsend import send_email
-from embeddings import chroma_embedding
-
 
 # Initialize the fast API
 app = FastAPI()

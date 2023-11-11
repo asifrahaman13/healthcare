@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import NavLink from "next/link";
+
 const backend_domain = process.env.NEXT_PUBLIC_BACKEND_DOMAIN;
 
 const UserProfile = ({ access_token }) => {
@@ -47,7 +48,7 @@ const UserProfile = ({ access_token }) => {
 
   return (
     <>
-      <section class="text-gray-600 body-font">
+      <section class="text-gray-600 body-font shadow-lg bg-gradient-to-r from-blue-200 to-indigo-400 bg-opacity-50">
         <div class="container px-5 py-24 mx-auto">
           <div class="text-center mb-20">
             <h1 class="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">
@@ -208,8 +209,8 @@ const UserProfile = ({ access_token }) => {
         </div>
       </section>
 
-      <div class="text-center mb-20">
-        <h1 class="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">
+      <div class="text-center mt-32">
+        <h1 class="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4 mt-4">
           My appointments
         </h1>
         <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">

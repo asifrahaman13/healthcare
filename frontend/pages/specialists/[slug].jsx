@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
 
@@ -15,26 +15,43 @@ const Page = () => {
       department: "",
       address: "",
     },
-  ]);const { slug } = router.query;
+  ]);
+  const { slug } = router.query;
 
+  const [color, setColor] = useState("");
   useEffect(() => {
-    
-  
+    const { slug } = router.query;
     async function getSpecialistDoctors() {
       try {
         const doctors = await axios.get(
           `${BACKEND_DOMAIN}/utility/get-${slug}`
         );
-        setDoctors(doctors.data)
+        setDoctors(doctors.data);
       } catch (err) {
         console.log(err);
       }
     }
-    getSpecialistDoctors()
-  });
-  
-  return (<>
-    <section className="text-gray-600 body-font">
+    getSpecialistDoctors();
+    console.log(slug);
+    switch (slug) {
+      case "cardiologists":
+        setColor("bg-red-200");
+        break;
+      case "neurologists":
+        setColor("bg-white-200");
+        break;
+      case "ophthalmologists":
+        setColor("bg-green-200");
+        break;
+      case "psychologists":
+        setColor("bg-yellow-200");
+        break;
+    }
+  }, []);
+
+  return (
+    <>
+      <section className={`text-gray-600 body-font ${color}`}>
         <div className="container px-5 py-24 mx-auto">
           <div class="flex flex-col text-center w-full mb-20">
             <h2 class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">
@@ -81,7 +98,8 @@ const Page = () => {
           </div>
         </div>
       </section>
-  </>)
+    </>
+  );
 };
 
 export default Page;

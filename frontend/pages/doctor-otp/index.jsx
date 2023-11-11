@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 // import 'tailwindcss/tailwind.css';
 import axios from "axios";
 
+const BACKEND_DOMAIN = process.env.NEXT_PUBLIC_BACKEND_DOMAIN;
+
 // import { console, consoleContainer } from 'react-consoleify';
 
 export default function VerifyOTP() {
@@ -29,7 +31,7 @@ export default function VerifyOTP() {
     // });
 
     const response = await axios.post(
-      "http://localhost:8000/doctors/verify-otp",
+      `${BACKEND_DOMAIN}/doctors/verify-otp`,
       { email, otp }
     );
 
@@ -45,7 +47,7 @@ export default function VerifyOTP() {
   };
   const handleResendOTP = async (e) => {
     e.preventDefault();
-    const response = await axios.post("http://localhost:8000/doctors/resend-otp", {
+    const response = await axios.post(`${BACKEND_DOMAIN}/doctors/resend-otp`, {
       email: email,
     });
     console.log(response);

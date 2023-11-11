@@ -5,12 +5,11 @@ import axios from "axios";
 import Services from "../components/Services.jsx";
 import Header from "../components/Header.jsx";
 import ReactTyped from "react-typed";
-import Faqs from "../components/Faqs.jsx"
+import Faqs from "../components/Faqs.jsx";
 
 const BACKEND_DOMAIN = process.env.NEXT_PUBLIC_BACKEND_DOMAIN;
 
 export default function Home() {
-
   const [doctors, setDoctors] = useState([
     {
       _id: "",
@@ -21,7 +20,7 @@ export default function Home() {
     },
   ]);
 
-  const fetchDoctors = async () => {
+  async function fetchDoctors() {
     try {
       const response = await axios.get(
         `${BACKEND_DOMAIN}/users/get-all-doctors`,
@@ -34,7 +33,7 @@ export default function Home() {
       console.error("Error fetching data:", error);
       throw error;
     }
-  };
+  }
 
   useEffect(() => {
     fetchDoctors();
@@ -69,7 +68,7 @@ export default function Home() {
         </section>
 
         {/* About Us Section */}
-        <section id="about" className="bg-gray-200 py-16">
+        <section id="about" className="py-16">
           <div className="container mx-auto text-center">
             <h2 className="text-3xl font-bold mb-8">
               <ReactTyped strings={["See our doctors"]} typeSpeed={100} loop />
@@ -111,11 +110,11 @@ export default function Home() {
           </div>
         </div>
 
-        <section id="about" className="bg-gray-200 py-16 mt-8">
+        <section id="about" className="py-16 mt-8">
           <div className="container mx-auto text-center">
             <h2 className="text-3xl font-bold mb-8">
               <ReactTyped
-                strings={[" Partners all over the globe"]}
+                strings={["Why choose us?"]}
                 typeSpeed={100}
                 loop
               />
@@ -123,187 +122,69 @@ export default function Home() {
             {/* Add information about your healthcare organization */}
           </div>
         </section>
-        <section class="text-gray-600 body-font">
+        <section class="text-gray-600 body-font bg-yellow-200">
           <div class="container px-5 py-24 mx-auto">
             <div class="flex flex-wrap -m-4">
               <div class="p-4 lg:w-1/3">
-                <div class="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
+                <div class="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24overflow-hidden text-center relative hover:transition duration-300 transform  hover:-translate-y-2 hover:shadow-xl rounded-xl">
                   <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                     CATEGORY
                   </h2>
                   <h1 class="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">
-                    Raclette Blueberry Nextious Level
+                  Telehealth Services
                   </h1>
-                  <p class="leading-relaxed mb-3">
-                    Photo booth fam kinfolk cold-pressed sriracha leggings
-                    jianbing microdosing tousled waistcoat.
+                  <p class="leading-relaxed">
+                    Experience accessible and convenient healthcare with our
+                    Telehealth Services. Connect with experienced healthcare
+                    professionals from the comfort of your home. Whether you
+                    need a consultation, prescription refill, or general medical
+                    advice, our telehealth platform is here to provide you with
+                    the care you deserve. Embrace the future of healthcare with
+                    seamless virtual appointments.
                   </p>
-                  <a class=" inline-flex items-center">
-                    Learn More
-                    <svg
-                      class="w-4 h-4 ml-2"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path d="M5 12h14"></path>
-                      <path d="M12 5l7 7-7 7"></path>
-                    </svg>
-                  </a>
-                  <div class="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
-                    <span class="text-gray-400 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-                      <svg
-                        class="w-4 h-4 mr-1"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                        <circle cx="12" cy="12" r="3"></circle>
-                      </svg>
-                      1.2K
-                    </span>
-                    <span class="text-gray-400 inline-flex items-center leading-none text-sm">
-                      <svg
-                        class="w-4 h-4 mr-1"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-                      </svg>
-                      6
-                    </span>
-                  </div>
+                  
                 </div>
               </div>
               <div class="p-4 lg:w-1/3">
-                <div class="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
+                <div class="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 overflow-hidden text-center relative hover:transition duration-300 transform  hover:-translate-y-2 hover:shadow-xl rounded-xl">
                   <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                     CATEGORY
                   </h2>
                   <h1 class="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">
-                    Ennui Snackwave Thundercats
+                  Specialized Care Programs
                   </h1>
-                  <p class="leading-relaxed mb-3">
-                    Photo booth fam kinfolk cold-pressed sriracha leggings
-                    jianbing microdosing tousled waistcoat.
+                  <p class="leading-relaxed">
+                    Discover personalized healthcare through our Specialized
+                    Care Programs. Tailored to meet your unique needs, our
+                    programs cover a range of health concerns, from chronic
+                    conditions to mental health support. Our dedicated team of
+                    experts will work with you to create a comprehensive care
+                    plan, ensuring you receive the specialized attention
+                    required for your well-being. Your health journey, our
+                    commitmen
                   </p>
-                  <a class="text-indigo-500 inline-flex items-center">
-                    Learn More
-                    <svg
-                      class="w-4 h-4 ml-2"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path d="M5 12h14"></path>
-                      <path d="M12 5l7 7-7 7"></path>
-                    </svg>
-                  </a>
-                  <div class="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
-                    <span class="text-gray-400 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-                      <svg
-                        class="w-4 h-4 mr-1"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                        <circle cx="12" cy="12" r="3"></circle>
-                      </svg>
-                      1.2K
-                    </span>
-                    <span class="text-gray-400 inline-flex items-center leading-none text-sm">
-                      <svg
-                        class="w-4 h-4 mr-1"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-                      </svg>
-                      6
-                    </span>
-                  </div>
+                 
                 </div>
               </div>
-              <div class="p-4 lg:w-1/3">
-                <div class="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
+              <div class="p-4 lg:w-1/3 hover:transition duration-300 transform">
+                <div class="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 overflow-hidden text-center relative hover:transition duration-300 transform  hover:-translate-y-2 hover:shadow-xl rounded-xl">
                   <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                     CATEGORY
                   </h2>
                   <h1 class="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">
-                    Selvage Poke Waistcoat Godard
+                  Health and Wellness Resources
                   </h1>
-                  <p class="leading-relaxed mb-3">
-                    Photo booth fam kinfolk cold-pressed sriracha leggings
-                    jianbing microdosing tousled waistcoat.
+                  <p class="leading-relaxed">
+                    Empower yourself with knowledge through our Health and
+                    Wellness Resources. Access a wealth of information on
+                    maintaining a healthy lifestyle, preventive care, and
+                    overall well-being. Explore articles, videos, and guides
+                    curated by our team of healthcare professionals. Stay
+                    informed, stay healthy. Your journey to wellness starts
+                    here." Feel free to adapt and modify these texts based on
+                    the specific details and branding of your healthcare
+                    website.
                   </p>
-                  <a class="text-indigo-500 inline-flex items-center">
-                    Learn More
-                    <svg
-                      class="w-4 h-4 ml-2"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path d="M5 12h14"></path>
-                      <path d="M12 5l7 7-7 7"></path>
-                    </svg>
-                  </a>
-                  <div class="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
-                    <span class="text-gray-400 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-                      <svg
-                        class="w-4 h-4 mr-1"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                        <circle cx="12" cy="12" r="3"></circle>
-                      </svg>
-                      1.2K
-                    </span>
-                    <span class="text-gray-400 inline-flex items-center leading-none text-sm">
-                      <svg
-                        class="w-4 h-4 mr-1"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-                      </svg>
-                      6
-                    </span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -456,8 +337,7 @@ export default function Home() {
         </div>
       </section>
 
-
-      <Faqs/>
+      <Faqs />
     </>
   );
 }

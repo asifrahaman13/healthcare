@@ -4,19 +4,19 @@ import { v4 as uuidv4 } from "uuid";
 import Loader from "@/components/Loader";
 import ReactTyped from "react-typed";
 
+
 const CHATBOT_DOMAIN = process.env.NEXT_PUBLIC_CHATBOT_DOMAIN;
 
 const index = () => {
+  const [username, setUsername] = useState("");
   const [chats, setChats] = useState([]);
   const [loadingTimeout, setLoadingTimeout] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
   const [inputText, setInputText] = useState(""); // Add state for the input box
   const [email, setEmail] = useState(""); // Add state for the email box
 
   const handlespeechSubmit = async (e) => {
     e.preventDefault();
-
     setIsLoading(true);
     setLoadingTimeout(
       setTimeout(() => {
@@ -33,7 +33,6 @@ const index = () => {
       // At least one of the fields is empty or contains only whitespace
       // Handle the validation error here
       console.error("Please provide valid values for all fields.");
-
       return;
     }
 
@@ -69,7 +68,6 @@ const index = () => {
     setInputText(e.target.value);
   };
 
-  const [username, setUsername] = useState("");
 
   const generateUniqueId = () => {
     setUsername(uuidv4());
@@ -101,8 +99,8 @@ const index = () => {
             <h2 className="text-xs text-black tracking-widest font-medium title-font mb-1">
               ASTRA
             </h2>
-            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
-              CHAT WITH OUR APPLICATION
+            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">     
+              <ReactTyped strings={["CHAT WITH OUR APPLICATION"]} typeSpeed={50} loop />
             </h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-900">
               Our application is capable of chatting with high level of
@@ -202,7 +200,6 @@ const index = () => {
                     USER QUESTION
                   </h2>
                   <p className="leading-relaxed text-base text-gray-900">
-                    
                     <ReactTyped strings={[item.question]} typeSpeed={10} />
                   </p>
                 </div>

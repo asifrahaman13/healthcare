@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import NavLink from "next/link"
+import NavLink from "next/link";
 
 const backend_domain = process.env.NEXT_PUBLIC_BACKEND_DOMAIN;
 
@@ -38,14 +38,14 @@ const Header = () => {
 
             <div class="flex justify-center">
               <NavLink href="/signin">
-              <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-                Subscribe
-              </button>
+                <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                  Subscribe
+                </button>
               </NavLink>
               <NavLink href="/about">
-              <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
-                Learn More
-              </button>
+                <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
+                  Learn More
+                </button>
               </NavLink>
             </div>
           </div>
@@ -67,7 +67,7 @@ const Header = () => {
                 </h2>
                 <p class="leading-relaxed">Users</p>
               </div>
-       
+
               <div class="p-4 sm:w-1/3 w-1/2">
                 <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900">
                   {statistics.total_doctors}

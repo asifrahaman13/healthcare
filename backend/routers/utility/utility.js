@@ -83,9 +83,14 @@ utility_router.post("/contact-us", async (req, res) => {
     }
 })
 
-utility_router.get("/subscribers", async (req, res) => {
+utility_router.get("/department-counts", async (req, res) => {
     try {
-
+        const totalNumberOfPsychologists = await Doctor.find({ department: "Psychology" }).count();
+        const totalCardiologists = await Doctor.find({ department: "Cardiology" }).count();
+        const totalOphthalmologists = await Doctor.find({ department: "Ophthalmology" }).count();
+        const totalNumberOfNeurologists = await Doctor.find({ department: "Neurology" }).count();
+        console.log(totalNumberOfPsychologists, totalCardiologists, totalOphthalmologists, totalNumberOfNeurologists)
+        res.send({ totalNumberOfPsychologists, totalCardiologists, totalOphthalmologists, totalNumberOfNeurologists })
     }
     catch (err) {
         res.status(404).send({ "error": err.message });

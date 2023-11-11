@@ -5,7 +5,6 @@ import "tailwindcss/tailwind.css";
 
 const BACKEND_DOMAIN = process.env.NEXT_PUBLIC_BACKEND_DOMAIN;
 
-
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,9 +22,8 @@ export default function Login() {
         setMessage(response.data.message);
         localStorage.setItem("user_access_token", response.data.accessToken);
         localStorage.setItem("user_email", email);
-    
-        router.push("/");
 
+        router.push("/");
       } else {
         console.error("Sorry wrong credentials");
         setMessage(response.data.message);

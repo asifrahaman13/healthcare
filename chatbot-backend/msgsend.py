@@ -74,12 +74,4 @@ def send_email(
         print("An error occurred while sending the email:", str(e))
 
 
-# # Send the email with dynamic content
-# send_email("akibislam793@gmail.com", """1. What is the possible name of the mental discorder I am facing.
-# 2. The explanation of the cause and effect of the mental discorder I am facing.
-# 3. The possible solutions and therapy. Describe the therapy in pointwise form too. For example like the following:
-# (a). therapy a
-# (b). therapy b
-# (c). dslfjsdfsdf
-# 4. The day to day steps I should take to cure it.
-# 5. The medicines that would be best for me.""")
+
