@@ -2,10 +2,12 @@ import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import "tailwindcss/tailwind.css";
+import Success from "../../components/Success";
 
 const BACKEND_DOMAIN = process.env.NEXT_PUBLIC_BACKEND_DOMAIN;
 
 export default function Login() {
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -22,14 +24,12 @@ export default function Login() {
         setMessage(response.data.message);
         localStorage.setItem("user_access_token", response.data.accessToken);
         localStorage.setItem("user_email", email);
-
         router.push("/");
       } else {
-        console.error("Sorry wrong credentials");
         setMessage(response.data.message);
       }
     } catch (error) {
-      console.error("Sorry wrong credentials");
+      setMessage("Sorry wrong credentials");
     }
   };
 

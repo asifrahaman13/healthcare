@@ -8,11 +8,6 @@ const Faqs = () => {
         "You can schedule a medical appointment by logging into your patient portal or by calling our appointment hotline. Follow the provided instructions for a seamless booking process.",
     },
     {
-      question: "How can I schedule a medical appointment?",
-      answer:
-        "You can schedule a medical appointment by logging into your patient portal or by calling our appointment hotline. Follow the provided instructions for a seamless booking process.",
-    },
-    {
       question: "What COVID-19 safety measures are in place?",
       answer:
         "Your health and safety are our top priorities. We have implemented strict COVID-19 safety protocols, including regular sanitization, social distancing measures, and virtual consultations when possible.",
@@ -43,7 +38,7 @@ const Faqs = () => {
 
   return (
     <>
-      <div className="bg-yellow-100 mb-8">
+      <div className="bg-yellow-100">
         <div className="w-3/4 mx-auto p-8">
           <h1 className="text-3xl font-bold mb-8 text-center">
             Frequently Asked Questions

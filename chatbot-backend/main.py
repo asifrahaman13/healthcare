@@ -63,6 +63,14 @@ async def your_endpoint(your_data: YourDataModel):
     # msg = chroma_embedding(question)
     msg = """Welcome to Circuithon, a two-day hackathon organized by IEEE IEM Circuits and Systems Society where you get to showcase your skills in circuit design and testing alongside your fellow engineering peers. Team Up today and register for this grand opportunity!
 
+    A 2-day team hackathon for UG and PG Electronics and Electrical Engineering students
+Maximum 3 members in each team \n\n
+Day 1 - Online MCQ based screening test\n
+Day 2 - Offline Hardware design round after qualifying screening test (All components to be provided by organizers; This round may include the use of microcontrollers like Arduino and ESP32)\n
+The winner will be selected on the basis of the performance of each individual team member
+Syllabus for Online test: (following standard GATE syllabus for EC)
+
+
 Guidelines:
 
 A 2-day team hackathon for UG and PG Electronics and Electrical Engineering students

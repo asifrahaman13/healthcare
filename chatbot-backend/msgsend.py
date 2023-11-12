@@ -72,6 +72,3 @@ def send_email(
         print(f"Email sent successfully to {receiver_email}")
     except Exception as e:
         print("An error occurred while sending the email:", str(e))
-
-
-

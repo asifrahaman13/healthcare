@@ -8,6 +8,7 @@ import jwt from "jsonwebtoken";
 
 // Load environment variables from .env file
 config();
+
 const SECRET_KEY = process.env.SECRET_KEY;
 
 const user_signup_router = express.Router();
@@ -72,7 +73,6 @@ user_signup_router.post("/signup", async (req, res) => {
             .json({ success: false, message: "Signup failed. Please try again." });
     }
 });
-
 
 // Verify OTP API
 user_signup_router.post("/verify-otp", async (req, res) => {
@@ -140,47 +140,53 @@ user_signup_router.post("/login", async (req, res) => {
 
     try {
         var { email, password } = req.body;
+        try {
+            // Check if the user exists and is verified
+            const user = await User.findOne({ email });
 
-        // Check if the user exists and is verified
-        const user = await User.findOne({ email });
-
-        var { email, fullName, address, profession } = user;
+            var { email, fullName, address, profession } = user;
 
 
-        if (user && user.isVerified) {
-            const passwordMatch = compare(password, user.password);
-            // If password matches then only generate the access token
-            if (passwordMatch) {
-                // Generate an access token
-                const accessToken = jwt.sign(
-                    {
-                        email,
-                        fullName,
-                        address,
-                        profession
-                    },
-                    SECRET_KEY,
-                    {
-                        expiresIn: "1w", // Token expires in 1 hour, adjust this as needed
-                    }
-                );
+            if (user && user.isVerified) {
+                const passwordMatch = await compare(password, user.password);
+                // If password matches then only generate the access token
+                if (passwordMatch) {
+                    // Generate an access token
+                    const accessToken = jwt.sign(
+                        {
+                            email,
+                            fullName,
+                            address,
+                            profession
+                        },
+                        SECRET_KEY,
+                        {
+                            expiresIn: "1w", // Token expires in 1 hour, adjust this as needed
+                        }
+                    );
 
-                res.json({
-                    success: true,
-                    message: `Welcome, ${user.fullName}!`,
-                    accessToken: accessToken, // Include the access token in the response
-                });
+                    res.json({
+                        success: true,
+                        message: `Welcome, ${user.fullName}!`,
+                        accessToken: accessToken, // Include the access token in the response
+                    });
+                } else {
+                    res
+                        .status(401)
+                        .json({ success: false, message: "Incorrect email or password." });
+                }
             } else {
-                res
-                    .status(401)
-                    .json({ success: false, message: "Incorrect email or password." });
+                res.status(401).json({
+                    success: false,
+                    message: "Invalid email or unverified account.",
+                });
             }
-        } else {
-            res.status(401).json({
-                success: false,
-                message: "Invalid email or unverified account.",
-            });
+
         }
+        catch (err) {
+            res.send({ "message": "sorry no such user exits" })
+        }
+
     } catch (error) {
         console.error("Error in /login:", error);
         res.status(500).json({ success: false, message: "Internal Server Error" });
@@ -213,11 +219,15 @@ user_signup_router.get("/user-details", async (req, res) => {
             const { email, fullName, address, profession } = decoded;
             const user = await User.findOne({ email })
 
+            // Filter appointments with a time in the future
+            const currentTimestamp = new Date().getTime();
+            const filteredAppointments = user.appointments.filter(appointment => new Date(appointment.time).getTime() > currentTimestamp);
+
             // You can now return the user details in the response
             res.json({
                 success: true,
                 userDetails: {
-                    email, fullName, address, profession, isSubscribed: user.isSubscribed,appointments: user.appointments
+                    email, fullName, address, profession, isSubscribed: user.isSubscribed, appointments: filteredAppointments
                 },
             });
         });

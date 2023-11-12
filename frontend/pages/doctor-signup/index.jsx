@@ -11,6 +11,7 @@ export default function Signup() {
     "Ophthalmology",
     "Psychology",
     "Cardiology",
+    "Dermatology"
   ];
 
   const [formData, setFormData] = useState({
@@ -19,8 +20,7 @@ export default function Signup() {
     address: "",
     experience: "",
     email: "",
-    password: "",
-    department: "",
+    password: ""
   });
 
 

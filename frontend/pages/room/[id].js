@@ -2,6 +2,9 @@ import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
 import useSocket from '../../hooks/useSocket';
+import Remarks from '../../components/Remarks';
+import UserHistory from '../../components/UserHistory';
+
 
 const ICE_SERVERS = {
   iceServers: [
@@ -12,6 +15,7 @@ const ICE_SERVERS = {
 };
 
 const Room = () => {
+  
   useSocket();
   const [micActive, setMicActive] = useState(true);
   const [cameraActive, setCameraActive] = useState(true);
@@ -264,7 +268,7 @@ const Room = () => {
     //   </button>
     // </div>
     <>
-      <div class="flex flex-col items-center justify-center h-screen bg-gray-900 text-white">
+      <div class="flex flex-col items-center justify-center  bg-gray-900 text-white">
         <div class="flex space-x-4 mb-8 w-5/6">
           <div class="relative w-full aspect-h-11">
             <video autoPlay ref={userVideoRef} class="rounded-lg shadow-md object-cover w-full h-full" />
@@ -305,7 +309,8 @@ const Room = () => {
         </div>
       </div>
 
-
+      <Remarks />
+<UserHistory id={router.query}/>
 
     </>
   );

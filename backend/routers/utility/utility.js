@@ -69,6 +69,15 @@ utility_router.get("/get-ophthalmologists", async (req, res) => {
     }
 });
 
+utility_router.get("/get-dermatologists", async (req, res) => {
+    try {
+        const dermatologists = await Doctor.find({ department: "Dermatology" }).select('fullName education experience department address');
+        res.send(dermatologists);
+    } catch (err) {
+        res.status(404).send({ "error": err.message });
+    }
+});
+
 utility_router.post("/contact-us", async (req, res) => {
     const { name, email, message } = req.body;
     try {
@@ -89,8 +98,8 @@ utility_router.get("/department-counts", async (req, res) => {
         const totalCardiologists = await Doctor.find({ department: "Cardiology" }).count();
         const totalOphthalmologists = await Doctor.find({ department: "Ophthalmology" }).count();
         const totalNumberOfNeurologists = await Doctor.find({ department: "Neurology" }).count();
-        console.log(totalNumberOfPsychologists, totalCardiologists, totalOphthalmologists, totalNumberOfNeurologists)
-        res.send({ totalNumberOfPsychologists, totalCardiologists, totalOphthalmologists, totalNumberOfNeurologists })
+        const totalNumberOfDermatologists= await Doctor.find({ department: "Dermatology"}).count();
+        res.send({ totalNumberOfPsychologists, totalCardiologists, totalOphthalmologists, totalNumberOfNeurologists ,totalNumberOfDermatologists})
     }
     catch (err) {
         res.status(404).send({ "error": err.message });

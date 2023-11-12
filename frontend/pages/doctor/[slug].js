@@ -4,10 +4,15 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import Success from "../../components/Success.jsx"
 
 const BACKEND_DOMAIN = process.env.NEXT_PUBLIC_BACKEND_DOMAIN;
 
 const Page = ({ doctorDetails }) => {
+  const [message, setMessage] = useState({
+    msg: "",
+    statuscode: 0,
+  });
   const [value, onChange] = useState(new Date());
   const [getDoctorDetails, setDoctorDetails] = useState(doctorDetails);
   const router = useRouter();
@@ -35,10 +40,17 @@ const Page = ({ doctorDetails }) => {
             Authorization: `Bearer ${user_access_token}`
           }
         })
+      console.log(appointment)
+      if (appointment.status === 200) {
+        console.log("yes")
+        setMessage({ msg: "Your appointment is successful", statuscode: 200 });
+      }
     }
     catch (err) {
-      console.error(err);
+      setMessage({ msg: "There was a problem asociated.", statuscode: 404 });
+
     }
+    handleShowToast()
   }
 
   useEffect(() => {
@@ -57,8 +69,21 @@ const Page = ({ doctorDetails }) => {
     }
   }, [router.query]);
 
+  const [showToast, setShowToast] = useState(false);
+
+  // Function to show the toast
+  const handleShowToast = () => {
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 3000); // Hide the toast after 3 seconds (adjust as needed)
+  };
+
   return (
     <>
+      <div className="relative">
+        {showToast && <Success message={message} />}
+      </div>
       <div class="relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl">
         <div class="px-6">
           <div class="flex flex-wrap justify-center">

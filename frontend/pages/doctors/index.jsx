@@ -11,6 +11,7 @@ const Doctors = () => {
     totalCardiologists: 0,
     totalOphthalmologists: 0,
     totalNumberOfNeurologists: 0,
+    totalNumberOfDermatologists:0
   });
 
   async function getDepartmentCounts() {
@@ -19,6 +20,7 @@ const Doctors = () => {
         `${BACKEND_DOMAIN}/utility/department-counts`
       );
       setDepartmentalStats(departmentCounts.data);
+      console.log(departmentCounts.data)
     } catch (err) {
       console.log(err);
     }
@@ -127,6 +129,25 @@ const Doctors = () => {
                   <p className="mt-8"> Total Doctors</p>
                   <h1 className="text-2xl font-bold">
                     {departmentalStats.totalCardiologists}
+                  </h1>
+                </div>
+              </NavLink>
+            </div>
+            <div class="p-4 lg:w-1/3 transform transition-transform hover:translate-y-[-8px]">
+              <NavLink href="/specialists/dermatologists">
+                <div class="h-full bg-blue-300 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
+                  <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
+                    CATEGORY
+                  </h2>
+                  <h1 class="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">
+                  Dermatology
+                  </h1>
+                  <p class="leading-relaxed mb-3">
+                    Get rid of your skin problems with our experts. 
+                  </p>
+                  <p className="mt-8"> Total Doctors</p>
+                  <h1 className="text-2xl font-bold">
+                    {departmentalStats.totalNumberOfDermatologists}
                   </h1>
                 </div>
               </NavLink>

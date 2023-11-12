@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Loader from "./Loader.jsx";
+import Success from "./Success.jsx";
 
 const BACKEND_DOMAIN = process.env.NEXT_PUBLIC_BACKEND_DOMAIN;
 
 const ContactUsPage = () => {
+  const [message, setMessage] = useState({
+    msg: "",
+    statuscode: 0,
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [contactDetails, setContactDetails] = useState({
     name: "",
@@ -30,13 +35,31 @@ const ContactUsPage = () => {
 
       if (contact) {
         setIsLoading(false);
+        setMessage({ msg: "Your message is sent successfully", statuscode: 200});
       }
     } catch (err) {
       console.log(err);
+      setMessage({ msg: "There was a problem asociated.", statuscode: 404 });
     }
+    handleShowToast();
   }
+
+  const [showToast, setShowToast] = useState(false);
+
+  // Function to show the toast
+  const handleShowToast = () => {
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 3000); // Hide the toast after 3 seconds (adjust as needed)
+  };
+
   return (
     <>
+      <div className="relative">
+        {showToast && <Success message={message} />}
+      </div>
+
       {isLoading && <Loader />}
       <div className="bg-gray-100 font-sans min-h-screen flex items-center justify-center shadow-xl">
         <div className="container mx-auto p-8">

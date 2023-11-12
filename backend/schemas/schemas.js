@@ -26,6 +26,20 @@ const MeetWithUserSchema = new Schema({
     },
 });
 
+
+// Define a separate schema for key-value pairs
+const PatientHistory = new Schema({
+    doctor_email: {
+        type: String,
+    },
+    remark: {
+        type: String,
+    },
+    time: {
+        type: String,
+    },
+});
+
 // Create Mongoose schema for users
 const userSchema = new Schema({
     fullName: {
@@ -62,6 +76,10 @@ const userSchema = new Schema({
     },
     appointments: {
         type: [MeetWithDoctorSchema],
+        default: [],
+    },
+    histories:{
+        type: [PatientHistory],
         default: [],
     }
 });
@@ -112,5 +130,6 @@ const User = model("users", userSchema);
 const Doctor = model("doctors", DoctorSchema)
 const MeetWithDoctor = model('MeetWithDoctor', MeetWithDoctorSchema);
 const MeetWithuser = model('MeetWithUser', MeetWithUserSchema);
+const patientHistory=model('PatientHistory',PatientHistory)
 
-export { User, Doctor, MeetWithDoctor, MeetWithuser };
+export { User, Doctor, MeetWithDoctor, MeetWithuser, patientHistory };
