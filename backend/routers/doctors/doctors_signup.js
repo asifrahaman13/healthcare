@@ -1,5 +1,5 @@
 import express from 'express';
-import { Doctor, User,patientHistory } from '../../schemas/schemas.js';
+import { Doctor, User, patientHistory } from '../../schemas/schemas.js';
 import SendEmail from '../../email/email.js';
 import { hash, compare } from "bcrypt";
 import { config } from "dotenv";
@@ -144,11 +144,11 @@ doctor_signup_router.post("/resend-otp", async (req, res) => {
 doctor_signup_router.post("/login", async (req, res) => {
     try {
         var { email, password } = req.body;
-            
-        try{
+
+        try {
             // Check if the doctor exists and is verified
             const doctor = await Doctor.findOne({ email });
-            
+
             var { email, fullName, education, experience, role, department } = doctor;
             if (doctor && doctor.isVerified) {
                 const passwordMatch = await compare(password, doctor.password);
@@ -170,7 +170,7 @@ doctor_signup_router.post("/login", async (req, res) => {
                             expiresIn: "1w", // Token expires in 1 hour, adjust this as needed
                         }
                     );
-    
+
                     res.json({
                         success: true,
                         message: `Welcome, ${doctor.fullName}!`,
@@ -188,8 +188,8 @@ doctor_signup_router.post("/login", async (req, res) => {
                 });
             }
         }
-        catch(err){
-            return res.send({"message":"Sorry no such user exists."})
+        catch (err) {
+            return res.send({ "message": "Sorry no such user exists." })
         }
 
 
@@ -201,54 +201,59 @@ doctor_signup_router.post("/login", async (req, res) => {
 });
 
 doctor_signup_router.get("/doctor-details", async (req, res) => {
-    const accessToken = req.headers.authorization; // Assuming you send the access token in the "Authorization" header
+    try {
+        const accessToken = req.headers.authorization; // Assuming you send the access token in the "Authorization" header
 
-
-    // If there is no bearer token or if it is not bearer token then return error message.
-    if (!accessToken || !accessToken.startsWith("Bearer ")) {
-        return res.status(401).json({
-            success: false,
-            message: "Access token is missing or not in the correct format.",
-        });
-    }
-    const token = accessToken.split("Bearer ")[1];
-
-
-    // Verify the access token
-    jwt.verify(token, SECRET_KEY, async (err, decoded) => {
-        if (err) {
+        // If there is no bearer token or if it is not bearer token then return error message.
+        if (!accessToken || !accessToken.startsWith("Bearer ")) {
             return res.status(401).json({
                 success: false,
-                message: "Invalid access token.",
+                message: "Access token is missing or not in the correct format.",
             });
         }
+        const token = accessToken.split("Bearer ")[1];
 
-        // If the token is valid, you can access user details from the decoded payload
-        const { email, fullName, education, experience, role, department } = decoded;
 
-        const doctor = await Doctor.findOne({ email })
+        // Verify the access token
+        jwt.verify(token, SECRET_KEY, async (err, decoded) => {
+            if (err) {
+                return res.status(401).json({
+                    success: false,
+                    message: "Invalid access token.",
+                });
+            }
 
-        console.log(doctor)
+            // If the token is valid, you can access user details from the decoded payload
+            const { email, fullName, education, experience, role, department } = decoded;
 
-        // You can now return the user details in the response
-        res.json({
-            success: true,
-            userDetails: {
-                email, fullName, address: doctor.address, education, experience, role, department, appointments: doctor.appointments
-            },
+            const doctor = await Doctor.findOne({ email })
+
+            console.log(doctor)
+
+            // You can now return the user details in the response
+            res.json({
+                success: true,
+                userDetails: {
+                    email, fullName, address: doctor.address, education, experience, role, department, appointments: doctor.appointments
+                },
+            });
         });
-    });
+    }
+    catch (err) {
+        res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+
 });
 
 
 doctor_signup_router.post("/patient-details", async (req, res) => {
     try {
-        const { doctor_email, patient_email ,remark, time} = req.body
-        const patient = await User.findOne({ email:patient_email })
+        const { doctor_email, patient_email, remark, time } = req.body
+        const patient = await User.findOne({ email: patient_email })
         // Create a new appointment using the MeetWithDoctor schema
         const patient_history = new patientHistory({
             doctor_email: doctor_email,
-            remark:remark,
+            remark: remark,
             time
         });
         // console.log(patient_history);
@@ -265,16 +270,16 @@ doctor_signup_router.post("/patient-details", async (req, res) => {
 })
 
 
-doctor_signup_router.post("/patients-history", async (req, res) =>{
+doctor_signup_router.post("/patients-history", async (req, res) => {
     console.log("triggered")
-    try{
-         const {meet_link}=req.body;
-         console.log(meet_link);
-         const user=await User.findOne({"appointments.meet_link": meet_link})
-         if(user==null){
-            return res.status(404).send({"message": "Sorry no such user exists"});
-         }
-         // Extract only the desired fields from user.histories
+    try {
+        const { meet_link } = req.body;
+        console.log(meet_link);
+        const user = await User.findOne({ "appointments.meet_link": meet_link })
+        if (user == null) {
+            return res.status(404).send({ "message": "Sorry no such user exists" });
+        }
+        // Extract only the desired fields from user.histories
         const filteredHistories = user.histories.map(history => ({
             doctor_email: history.doctor_email,
             remark: history.remark,
@@ -282,9 +287,9 @@ doctor_signup_router.post("/patients-history", async (req, res) =>{
         }));
         console.log(filteredHistories)
 
-         return res.send(filteredHistories)
+        return res.send(filteredHistories)
     }
-    catch(err){
+    catch (err) {
         return res.status(500).json({ success: false, message: "Internal Server Error" });
     }
 })
