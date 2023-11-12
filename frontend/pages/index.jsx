@@ -28,6 +28,7 @@ export default function Home() {
       );
 
       setDoctors(response.data);
+      console.log(doctors)
       return response.data;
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -65,8 +66,9 @@ export default function Home() {
             <Services />
        
 
-        {/* About Us Section */}
-        <section id="about" className="py-16">
+       {doctors==[] && <>
+          {/* About Us Section */}
+          <section id="about" className="py-16">
           <div className="container mx-auto text-center">
             <h2 className="text-3xl font-bold mb-8">
               <ReactTyped strings={["See our doctors"]} typeSpeed={100} loop />
@@ -107,6 +109,9 @@ export default function Home() {
             ))}
           </div>
         </div>
+       </>}
+
+     
 
         <section id="about" className="py-16 mt-8">
           <div className="container mx-auto text-center">

@@ -8,6 +8,7 @@ const Header = () => {
   const [statistics, setStatistics] = useState({
     total_doctors: 0,
     total_users: 0,
+    total_appointments:0
   });
   useEffect(() => {
     async function getStat() {

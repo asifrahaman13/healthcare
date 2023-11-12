@@ -61,7 +61,7 @@ const ContactUsPage = () => {
       </div>
 
       {isLoading && <Loader />}
-      <div className="bg-gray-100 font-sans min-h-screen flex items-center justify-center shadow-xl">
+      <div className="bg-gray-100">
         <div className="container mx-auto p-8">
           <h1 className="text-4xl font-bold mb-8 text-center">Contact Us</h1>
 

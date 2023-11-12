@@ -45,6 +45,9 @@ const Page = () => {
       case "psychologists":
         setColor("bg-yellow-200");
         break;
+        case "dermatologists":
+          setColor("bg-blue-200");
+          break;
     }
   }, []);
 

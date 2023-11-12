@@ -143,7 +143,7 @@ const Doctors = () => {
                   Dermatology
                   </h1>
                   <p class="leading-relaxed mb-3">
-                    Get rid of your skin problems with our experts. 
+                    Get rid of your skin problems with our experts. We have doctors from all around the globe.
                   </p>
                   <p className="mt-8"> Total Doctors</p>
                   <h1 className="text-2xl font-bold">
