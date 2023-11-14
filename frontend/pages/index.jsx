@@ -226,14 +226,14 @@ export default function Home() {
                     <path d="M22 12h-4l-3 9-9-24 7 7h4l3 9z"></path>
                   </svg>
                 </div>
-                <h2 className="text-gray-900 text-lg font-medium">Sam Karn</h2>
+                <h2 className="text-gray-900 text-lg font-medium">Rohan Chandra Das</h2>
               </div>
               <p className="text-base leading-relaxed">
-                "This charging station is a game-changer for me! As a frequent
-                road tripper, I rely on dependable charging points, and this one
-                never disappoints. It's always in good working condition, and
-                the multiple ports ensure I can charge both my EV and my
-                friend's without any hassle. Thumbs up!"
+            "This is indeed an awesome website. I'm immensely thankful for the convenience your live video calling brings to healthcare. 
+            As a busy professional, connecting with my doctor from home is a game-changer. The user-friendly platform and impressive video quality make consultations easy. 
+            The dedication of your medical professionals shines through, ensuring a seamless and reassuring experience. 
+            Thank you for making healthcare accessible and patient-centric. I've recommended your platform to friends and family and will continue to do so. 
+            Here's to a healthier and connected future!"
               </p>
               <a
                 href="#"
@@ -268,13 +268,12 @@ export default function Home() {
                     <path d="M22 12h-4l-3 9-9-24 7 7h4l3 9z"></path>
                   </svg>
                 </div>
-                <h2 className="text-gray-900 text-lg font-medium">John Wick</h2>
+                <h2 className="text-gray-900 text-lg font-medium">Dr. Kuntal Sharma, Ph.D.</h2>
               </div>
               <p className="text-base leading-relaxed">
-                "I definitely got one of the best services from ASTRA. They give
-                quality services. Earlier it was very inconvenitent to find the
-                proper EV aound. Now it is quite easy and at the same time
-                conveninet to find them all due to ASTRA."
+                "I'm a doctor, and your video calling feature is fantastic! It simplifies connecting with patients, making my job smoother.
+                 The straightforward setup and clear video enhance our virtual visits. Thanks for improving healthcare accessibility and making my work more efficient. 
+                 I appreciate the positive impact your platform has on both doctors and patients."
               </p>
               <a
                 href="#"
@@ -309,13 +308,15 @@ export default function Home() {
                     <path d="M22 12h-4l-3 9-9-24 7 7h4l3 9z"></path>
                   </svg>
                 </div>
-                <h2 className="text-gray-900 text-lg font-medium">Jain Paul</h2>
+                <h2 className="text-gray-900 text-lg font-medium">Sunita Paul</h2>
               </div>
               <p className="text-base leading-relaxed">
-                "In the ever increasing world of power consumption where green
-                energey is exploding we need a proper system to manage the
-                entire ecosystem. Astra are among those organizations which
-                solves the problem to a large scale. "
+          
+            "Being under the care of Dr. Piyush, M.D., was an incredible experience. 
+            The personalized attention and expertise provided a superb journey to recovery. 
+            Thanks to Dr. Piyush's compassionate approach, I felt supported and understood. 
+            The treatment was effective, and I am now cured. Grateful for the positive impact on my health. Dr. Piyush is not just a doctor,
+            they are a healer. Thank you for making my health journey so positive and successful!"
               </p>
               <a
                 href="#"
@@ -344,3 +345,7 @@ export default function Home() {
     </>
   );
 }
+
+
+
+

@@ -37,12 +37,13 @@ const Services = () => {
               </div>
               <div class="flex-grow">
                 <h2 class="text-gray-900 text-lg title-font font-medium mb-3">
-                  Shooting Stars
+             Specialized Doctors
                 </h2>
                 <p class="leading-relaxed text-base">
-                  Blue bottle crucifix vinyl post-ironic four dollar toast vegan
-                  taxidermy. Gastropub indxgo juice poutine, ramps microdosing
-                  banh mi pug VHS try-hard.
+                  
+             Discover specialized care with our expert team in Psychology, Neurology, Ophthalmology, Cardiology, and Dermatology. 
+             From mental health to skin concerns, our skilled professionals prioritize your well-being.
+              Benefit from personalized services addressing your unique healthcare needs.
                 </p>
                 <a class="mt-3 text-indigo-500 inline-flex items-center">
                   Learn More
@@ -78,12 +79,11 @@ const Services = () => {
               </div>
               <div class="flex-grow">
                 <h2 class="text-gray-900 text-lg title-font font-medium mb-3">
-                  The Catalyzer
+                 Expert Guidance through Video Interactions
                 </h2>
                 <p class="leading-relaxed text-base">
-                  Blue bottle crucifix vinyl post-ironic four dollar toast vegan
-                  taxidermy. Gastropub indxgo juice poutine, ramps microdosing
-                  banh mi pug VHS try-hard.
+               Ease into virtual healthcare! Our platform offers hassle-free video consultations for mental health, neurology, eye, heart, and skin issues. 
+               Prioritizing your well-being, we bring expert advice to your space through seamless video interactions.
                 </p>
                 <a class="mt-3 text-indigo-500 inline-flex items-center">
                   Learn More
@@ -118,12 +118,12 @@ const Services = () => {
               </div>
               <div class="flex-grow">
                 <h2 class="text-gray-900 text-lg title-font font-medium mb-3">
-                  Neptune
+                  Unique Chatbot
                 </h2>
                 <p class="leading-relaxed text-base">
-                  Blue bottle crucifix vinyl post-ironic four dollar toast vegan
-                  taxidermy. Gastropub indxgo juice poutine, ramps microdosing
-                  banh mi pug VHS try-hard.
+              Experience the power of precision in our application's chat feature! 
+              Enjoy swift responses with minimal delay and optimal latency, ensuring you receive direct and to-the-point answers. 
+              Our chat capability guarantees a seamless and efficient interaction for a more engaging experience.
                 </p>
                 <a class="mt-3 text-indigo-500 inline-flex items-center">
                   Learn More
